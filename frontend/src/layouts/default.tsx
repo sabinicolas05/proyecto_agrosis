@@ -1,29 +1,17 @@
-import { Link } from "@heroui/link";
+import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import { Header } from "@/components/Header";
 
-import { Navbar } from "@/components/navbar";
+export default function DefaultLayout({ children }: { children: React.ReactNode }) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-export default function DefaultLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
   return (
-    <div className="relative flex flex-col h-screen">
-      <Navbar />
-      <main className="container mx-auto max-w-7xl px-6 flex-grow pt-16">
-        {children}
-      </main>
-      <footer className="w-full flex items-center justify-center py-3">
-        <Link
-          isExternal
-          className="flex items-center gap-1 text-current"
-          href="https://heroui.com"
-          title="heroui.com homepage"
-        >
-          <span className="text-default-600">Powered by</span>
-          <p className="text-primary">HeroUI</p>
-        </Link>
-      </footer>
+    <div className="relative flex h-screen">
+      <Navbar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+      <div className="flex flex-col flex-grow transition-all duration-300" style={{ marginLeft: isSidebarOpen ? "250px" : "70px" }}>
+        <Header isSidebarOpen={isSidebarOpen} />
+        <main className="container mx-auto max-w-7xl px-6 flex-grow pt-20">{children}</main>
+      </div>
     </div>
   );
 }
