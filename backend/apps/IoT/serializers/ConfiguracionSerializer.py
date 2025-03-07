@@ -1,4 +1,4 @@
-from ..models.Configuracion import Configuracion
+from ..models.Configuracion_model import Configuracion
 from rest_framework.serializers import ModelSerializer
 
 class ConfiguracionSerializer(ModelSerializer):

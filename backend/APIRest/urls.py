@@ -73,12 +73,16 @@ from apps.Trazabilidad.routers.PlagaRouter import PlagaRouter
 from apps.Trazabilidad.routers.SemilleroRouter import SemilleroRouter
 from apps.Trazabilidad.routers.Tipo_EspecieRouter import Tipo_EspecieRouter
 from apps.Trazabilidad.routers.Tipo_PlagaRouter import Tipo_PlagaRouter
+#Usuario
+from apps.Users.routers.UsuarioRouter import UsuarioRouter
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #URLs de JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # URLs de usuario
+    path('api/', include(UsuarioRouter.urls)),
     #URLs de Swagger
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
@@ -87,36 +91,36 @@ urlpatterns = [
     #Routers de las aplicaciones
     
     # Finanzas
-    path('api/pago/', include(PagoRouter.urls)),
-    path('api/produccion/', include(ProduccionRouter.urls)),
-    path('api/residuo/', include(ResiduoRouter.urls)),
-    path('api/venta/', include(VentaRouter.urls)),
+    path('api/', include(PagoRouter.urls)),
+    path('api/', include(ProduccionRouter.urls)),
+    path('api/', include(ResiduoRouter.urls)),
+    path('api/', include(VentaRouter.urls)),
 
     # Inventario
-    path('api/herramienta/', include(HerramientaRouter.urls)),
-    path('api/insumo/', include(InsumoRouter.urls)),
-    path('api/inventario/', include(InventarioRouter.urls)),
-    path('api/tipo_herramienta/', include(Tipo_HerramientaRouter.urls)),
-    path('api/tipo_insumo/', include(Tipo_InsumoRouter.urls)),
+    path('api/', include(HerramientaRouter.urls)),
+    path('api/', include(InsumoRouter.urls)),
+    path('api/', include(InventarioRouter.urls)),
+    path('api/', include(Tipo_HerramientaRouter.urls)),
+    path('api/', include(Tipo_InsumoRouter.urls)),
 
     # IoT
-    path('api/configuracion/', include(ConfiguracionRouter.urls)),
-    path('api/sensor/', include(SensorRouter.urls)),
-    path('api/tipo_sensor/', include(Tipo_SensorRouter.urls)),
+    path('api/', include(ConfiguracionRouter.urls)),
+    path('api/', include(SensorRouter.urls)),
+    path('api/', include(Tipo_SensorRouter.urls)),
 
     # Trazabilidad
-    path('api/actividad/', include(ActividadRouter.urls)),
-    path('api/afeccion/', include(AfeccionRouter.urls)),
-    path('api/asignacion_actividad/', include(Asignacion_ActividadRouter.urls)),
-    path('api/bancal/', include(BancalRouter.urls)),
-    path('api/control/', include(ControlRouter.urls)),
-    path('api/cultivo/', include(CultivoRouter.urls)),
-    path('api/especie/', include(EspecieRouter.urls)),
-    path('api/lote/', include(LoteRouter.urls)),
-    path('api/notificacion/', include(NotificacionRouter.urls)),
-    path('api/plaga/', include(PlagaRouter.urls)),
-    path('api/semillero/', include(SemilleroRouter.urls)),
-    path('api/tipo_especie/', include(Tipo_EspecieRouter.urls)),
-    path('api/tipo_plaga/', include(Tipo_PlagaRouter.urls)),
+    path('api/', include(ActividadRouter.urls)),
+    path('api/', include(AfeccionRouter.urls)),
+    path('api/', include(Asignacion_ActividadRouter.urls)),
+    path('api/', include(BancalRouter.urls)),
+    path('api/', include(ControlRouter.urls)),
+    path('api/', include(CultivoRouter.urls)),
+    path('api/', include(EspecieRouter.urls)),
+    path('api/', include(LoteRouter.urls)),
+    path('api/', include(NotificacionRouter.urls)),
+    path('api', include(PlagaRouter.urls)),
+    path('api/', include(SemilleroRouter.urls)),
+    path('api/', include(Tipo_EspecieRouter.urls)),
+    path('api/', include(Tipo_PlagaRouter.urls)),
 
 ]

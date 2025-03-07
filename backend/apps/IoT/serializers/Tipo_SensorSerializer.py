@@ -1,4 +1,4 @@
-from ..models.Tipo_Sensor import Tipo_Sensor
+from ..models.Tipo_Sensor_model import Tipo_Sensor
 from rest_framework.serializers import ModelSerializer
 
 class Tipo_SensorSerializer(ModelSerializer):

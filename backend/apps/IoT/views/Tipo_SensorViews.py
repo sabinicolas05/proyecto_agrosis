@@ -1,5 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
-from ..models.Tipo_Sensor import Tipo_Sensor
+from ..models.Tipo_Sensor_model import Tipo_Sensor
 from ..serializers.Tipo_SensorSerializer import Tipo_SensorSerializer
 from rest_framework.permissions import IsAuthenticated
 

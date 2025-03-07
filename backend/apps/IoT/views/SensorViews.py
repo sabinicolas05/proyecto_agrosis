@@ -1,5 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
-from ..models.Sensor import Sensor
+from ..models.Sensor_model import Sensor
 from ..serializers.SensorSerializer import SensorSerializer
 from rest_framework.permissions import IsAuthenticated
 
