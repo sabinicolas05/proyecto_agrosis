@@ -7,7 +7,6 @@ interface FormContainerProps {
   className?: string;
 }
 
-
 const Formulario: React.FC<FormContainerProps> = ({ title, children, onSubmit, className }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

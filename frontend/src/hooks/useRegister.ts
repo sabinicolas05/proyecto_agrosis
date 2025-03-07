@@ -18,7 +18,7 @@ export const useRegister = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  
+  // ✅ Manejar checkboxes
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.checked });
   };

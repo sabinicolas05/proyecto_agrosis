@@ -10,7 +10,7 @@ export default function LoginForm() {
   return (
     <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
-        <h1 className="text-2xl font-bold text-center mb-4">Iniciar Sesión</h1>
+        <h1 className="text-2xl font-bold text-center mb-4">Iniciar Sesión, debe crear un superuser en cmd previamente</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <Label htmlFor="username">Nombre de usuario</Label>

@@ -22,7 +22,7 @@ import {
 import { GiProcessor } from "react-icons/gi";
 
 const menuItems = [
-  { id: 1, label: "Inicio", path: "/", icon: <FaHome /> },
+  { id: 1, label: "Inicio", path: "/inicio", icon: <FaHome /> },
   { id: 2, label: "Semillero", path: "/semilleros", icon: < FaCalendarAlt/> },
   {
     id: 3,
