@@ -1,0 +1,15 @@
+
+npx heroui-cli@latest init -t vite nombre_proyecto
+npm install
+npm install react-toastify
+npm install react-router-dom
+npm install @types/react-router-dom
+npm install @tanstack/react-query
+npm install react-hook-form
+
+limpiar cache
+rm -rf node_modules/.vite
+
+correr react:
+npm run dev
+
