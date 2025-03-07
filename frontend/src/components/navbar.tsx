@@ -23,35 +23,41 @@ import { GiProcessor } from "react-icons/gi";
 
 const menuItems = [
   { id: 1, label: "Inicio", path: "/", icon: <FaHome /> },
-  { id: 2, label: "docs", path: "/docs", icon: <FaUser /> },
-  { id: 3, label: "Calendario", path: "/calendario", icon: <FaCalendarAlt /> },
-  { id: 4, label: "Mapa", path: "/mapa", icon: <FaMapMarkerAlt /> },
+  { id: 2, label: "Semillero", path: "/semilleros", icon: < FaCalendarAlt/> },
   {
-    id: 5,
-    label: "Cultivos",
-    icon: <FaLeaf />,
-    subItems: [
-      { id: 6, label: "Cultivo", path: "/cultivo/cultivo", icon: <FaSeedling /> },
-      { id: 7, label: "Especies", path: "/cultivo/especies", icon: <FaTachometerAlt /> },
-      { id: 8, label: "Tipo Especie", path: "/cultivo/tipoespecie/", icon: <FaTree /> },
-      { id: 9, label: "Bancal", path: "/cultivo/bancal", icon: <FaTree /> },
-      { id: 10, label: "Lotes", path: "/cultivo/lotes", icon: <FaTree /> },
-      { id: 11, label: "Actividades", path: "/cultivo/actividades", icon: <FaTree /> },
-    ],
-  },
-  { id: 12, label: "Finanzas", path: "/finanzas", icon: <FaDollarSign /> },
-  { id: 13, label: "Plagas", path: "/plagas", icon: <FaBug /> },
-  { id: 14, label: "Inventario", path: "/inventario", icon: <FaBox /> },
-  {
-    id: 15,
+    id: 3,
     label: "IoT",
     icon: <GiProcessor />,
     subItems: [
-      { id: 16, label: "Evapotranspiración", path: "/iot/evapotranspiracion", icon: <FaCloudRain /> },
-      { id: 17, label: "Sensores", path: "/iot/sensores", icon: <FaTachometerAlt /> },
-      { id: 18, label: "Humedad", path: "/iot/humedad", icon: <FaTemperatureHigh /> },
+      { id: 4, label: "Tipos de sensor", path: "/iot/tipo-sensor", icon: <FaCloudRain /> },
+      { id: 5, label: "Sensores", path: "/iot/sensores", icon: <FaTachometerAlt /> },
+      { id: 6, label: "Configuracion", path: "/iot/configuracion", icon: <FaTemperatureHigh /> },
     ],
   },
+  {
+    id: 7,
+    label: "Cultivos",
+    icon: <FaLeaf />,
+    subItems: [
+      { id: 8, label: "Cultivo", path: "/cultivo/cultivo", icon: <FaSeedling /> },
+      { id: 9, label: "Especies", path: "/cultivo/especies", icon: <FaTachometerAlt /> },
+      { id: 10, label: "Tipo Especie", path: "/cultivo/tipoespecie/", icon: <FaTree /> },
+      { id: 11, label: "Bancal", path: "/cultivo/bancal", icon: <FaTree /> },
+      { id: 12, label: "Lotes", path: "/cultivo/lotes", icon: <FaTree /> },
+      { id: 13, label: "Actividades", path: "/cultivo/actividades", icon: <FaTree /> },
+    ],
+  },
+
+  
+  { id: 14, label: "Usuarios", path: "/usuarios", icon: < FaUser/> },
+
+  { id: 15, label: "Mapa", path: "/mapa", icon: <FaMapMarkerAlt /> },
+  { id: 16, label: "Finanzas", path: "/finanzas", icon: <FaDollarSign /> },
+  { id: 17, label: "Plagas", path: "/plagas", icon: <FaBug /> },
+
+
+  { id: 18, label: "Inventario", path: "/inventario", icon: <FaBox /> },
+
 ];
 
 import LogoSena from "../assets/def_AGROSIS_LOGOTIC.png";
