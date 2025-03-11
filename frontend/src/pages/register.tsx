@@ -88,6 +88,11 @@ export default function RegisterForm() {
           <Button type="submit" className="w-full">
             Registrarse
           </Button>
+          <h2>¿Ya tienes cuenta?</h2>
+          <a href="/" className="bg-blue-500 text-white px-4 py-2 rounded inline-block">
+  Ir a Login
+</a>
+
         </form>
       </div>
     </section>

@@ -10,6 +10,7 @@ export default function LoginForm() {
   return (
     <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
+       
         <h1 className="text-2xl font-bold text-center mb-4">Iniciar Sesión, debe crear un superuser en cmd previamente</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
@@ -37,6 +38,11 @@ export default function LoginForm() {
           <Button type="submit" className="w-full">
             Iniciar Sesión
           </Button>
+          <h2>¿No tienes una cuenta?</h2>
+          <a href="/register" className="bg-blue-500 text-white px-4 py-2 rounded inline-block">
+  Ir a Registro
+</a>
+
         </form>
       </div>
     </section>
