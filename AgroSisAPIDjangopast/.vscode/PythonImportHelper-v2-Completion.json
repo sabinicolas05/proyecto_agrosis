@@ -170,6 +170,14 @@
         "documentation": {}
     },
     {
+        "label": "status",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "get_schema_view",
         "importPath": "drf_yasg.views",
         "description": "drf_yasg.views",
@@ -795,6 +803,22 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -2048,6 +2072,14 @@
         "importPath": "django.contrib.auth.validators",
         "description": "django.contrib.auth.validators",
         "detail": "django.contrib.auth.validators",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
         "documentation": {}
     },
     {
@@ -3471,11 +3503,20 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "apps.Users.migrations.0002_alter_rol_tipo_alter_usuario_fecha_nac_and_more",
+        "description": "apps.Users.migrations.0002_alter_rol_tipo_alter_usuario_fecha_nac_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('Users', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='rol',\n            name='tipo',\n            field=models.CharField(max_length=40, unique=True),\n        ),",
+        "detail": "apps.Users.migrations.0002_alter_rol_tipo_alter_usuario_fecha_nac_and_more",
+        "documentation": {}
+    },
+    {
         "label": "UsuarioSerializer",
         "kind": 6,
         "importPath": "apps.Users.serializers.userSerializer",
         "description": "apps.Users.serializers.userSerializer",
-        "peekOfCode": "class UsuarioSerializer(ModelSerializer):\n    class Meta:\n        model = Usuario\n        fields ='__all__'",
+        "peekOfCode": "class UsuarioSerializer(ModelSerializer):\n    class Meta:\n        model = Usuario\n        fields = '__all__'\n        extra_kwargs = {'password': {'write_only': True}}  # Evita que la contraseña se muestre en respuestas\n    def create(self, validated_data):\n        user = Usuario(**validated_data)\n        user.set_password(validated_data['password'])  # Encripta la contraseña\n        user.save()\n        return user",
         "detail": "apps.Users.serializers.userSerializer",
         "documentation": {}
     },
@@ -3484,7 +3525,7 @@
         "kind": 6,
         "importPath": "apps.Users.views.UsuarioViews",
         "description": "apps.Users.views.UsuarioViews",
-        "peekOfCode": "class UsuarioViews(ModelViewSet):\n    queryset= Usuario.objects.all()\n    serializer_class =UsuarioSerializer\n    permission_classes = [IsAuthenticatedOrReadOnly]",
+        "peekOfCode": "class UsuarioViews(ModelViewSet):\n    queryset = Usuario.objects.all()\n    serializer_class = UsuarioSerializer\n    permission_classes = [IsAuthenticatedOrReadOnly]\n    def create(self, request, *args, **kwargs):\n        \"\"\"Sobreescribe la creación de usuario para manejar la encriptación y el token correctamente.\"\"\"\n        serializer = self.get_serializer(data=request.data)\n        if serializer.is_valid():\n            user = serializer.save()\n            return Response(",
         "detail": "apps.Users.views.UsuarioViews",
         "documentation": {}
     },
@@ -3502,7 +3543,7 @@
         "kind": 6,
         "importPath": "apps.Users.models",
         "description": "apps.Users.models",
-        "peekOfCode": "class UsuarioFormulario(BaseUserManager):\n    def create_user(self,identificacion,email,username,password = None, **extra_fields):\n        if not identificacion:\n            raise ValueError(\"Identificación no ingresada\")\n        if not email:\n            raise ValueError(\"Correo no ingresado\")\n        if not username:\n            raise ValueError(\"Usuario no ingresado\")\n        email = self.normalize_email(email)\n        user = self.model(email=email, identificacion=identificacion, username=username, **extra_fields)",
+        "peekOfCode": "class UsuarioFormulario(BaseUserManager):\n    def create_user(self, identificacion, email, username, password=None, **extra_fields):\n        if not identificacion:\n            raise ValueError(\"Identificación no ingresada\")\n        if not email:\n            raise ValueError(\"Correo no ingresado\")\n        if not username:\n            raise ValueError(\"Usuario no ingresado\")\n        if not password:\n            raise ValueError(\"Contraseña no ingresada\")",
         "detail": "apps.Users.models",
         "documentation": {}
     },
@@ -3511,7 +3552,7 @@
         "kind": 6,
         "importPath": "apps.Users.models",
         "description": "apps.Users.models",
-        "peekOfCode": "class Rol(models.Model):\n    tipo = models.CharField(max_length=40)\n    def __str__(self):\n        return self.tipo\nclass Usuario(AbstractUser):\n    identificacion = models.BigIntegerField(unique=True,null=False)\n    fk_rol = models.ForeignKey(Rol,on_delete=models.SET_NULL,null=True)\n    fecha_nac = models.DateField(null=True)\n    telefono = models.CharField(max_length=20,null=True)\n    email = models.EmailField(max_length=40,unique=True)",
+        "peekOfCode": "class Rol(models.Model):\n    tipo = models.CharField(max_length=40, unique=True)\n    def __str__(self):\n        return self.tipo\n# Modelo de Usuario personalizado\nclass Usuario(AbstractUser):\n    identificacion = models.BigIntegerField(unique=True, null=False)\n    fk_rol = models.ForeignKey(Rol, on_delete=models.SET_NULL, null=True, blank=True)\n    fecha_nac = models.DateField(null=True, blank=True)\n    telefono = models.CharField(max_length=20, null=True, blank=True)",
         "detail": "apps.Users.models",
         "documentation": {}
     },
@@ -3520,7 +3561,7 @@
         "kind": 6,
         "importPath": "apps.Users.models",
         "description": "apps.Users.models",
-        "peekOfCode": "class Usuario(AbstractUser):\n    identificacion = models.BigIntegerField(unique=True,null=False)\n    fk_rol = models.ForeignKey(Rol,on_delete=models.SET_NULL,null=True)\n    fecha_nac = models.DateField(null=True)\n    telefono = models.CharField(max_length=20,null=True)\n    email = models.EmailField(max_length=40,unique=True)\n    REQUIRED_FIELDS = ['identificacion','email']\n    objects = UsuarioFormulario()\n    def __str__(self):\n        return str(self.username)",
+        "peekOfCode": "class Usuario(AbstractUser):\n    identificacion = models.BigIntegerField(unique=True, null=False)\n    fk_rol = models.ForeignKey(Rol, on_delete=models.SET_NULL, null=True, blank=True)\n    fecha_nac = models.DateField(null=True, blank=True)\n    telefono = models.CharField(max_length=20, null=True, blank=True)\n    email = models.EmailField(max_length=40, unique=True)\n    REQUIRED_FIELDS = [\"identificacion\", \"email\"]\n    objects = UsuarioFormulario()  # Usa el manager personalizado\n    def __str__(self):\n        return self.username",
         "detail": "apps.Users.models",
         "documentation": {}
     },
