@@ -35,7 +35,7 @@ export const usePostSensor = () => {
       toast.success(`✅ Sensor registrado con medición ${data.medicion}`);
     },
     onError: () => {
-      toast.error("❌ Error al registrar el sensor");
+      toast.error("❌ Error al Registrar el sensor");
     },
   });
 };

@@ -2,13 +2,15 @@ import { useForm } from "react-hook-form";
 import { Button, Input } from "@heroui/react";
 import { usePostSensor } from "@/hooks/usePostSensor";
 import DefaultLayout from "@/layouts/default";
+import { Sensor } from "@/types/sensorTypes";
 
 const SensorForm = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm<Sensor>(); // ⬅️ Ahora está tipado correctamente
   const { mutate: saveSensor, isLoading } = usePostSensor();
 
-  const onSubmit = (formData) => {
-    formData.medicion = parseFloat(formData.medicion); // Convierte la medición a número decimal
+  const onSubmit = (formData: Sensor) => { // ⬅️ También tipamos `formData`
+    formData.medicion = parseFloat(formData.medicion.toString()); // Asegura que `medicion` sea un número
+
     saveSensor(formData, {
       onSuccess: () => {
         reset(); 
