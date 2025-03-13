@@ -18,6 +18,8 @@ import ActividadForm from "./pages/ActividadForm";
 import SensorForm from "./pages/SensorForm";
 import TipoSensorForm from "./pages/TipoSensorForm";
 import UsuariosList from "./pages/UsersGet";
+import EditarUsuario from "./pages/EditarUsuario";
+
 function App() {
   return (
     <>
@@ -55,6 +57,7 @@ function App() {
           <Route element={<CultivoForm />} path="/cultivo/cultivo" />
           <Route element={<ActividadForm />} path="/cultivo/actividades" />
           <Route element={<UsuariosList />} path="/usuarios" />
+          <Route element={<EditarUsuario />} path="/usuarios/editar/:id" />
           <Route element={<PricingPage />} path="/pricing" />
           <Route element={<BlogPage />} path="/blog" />
           <Route element={<AboutPage />} path="/about" />
