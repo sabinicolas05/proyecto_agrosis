@@ -4,7 +4,6 @@ import DefaultLayout from "@/layouts/default";
 const UsuariosList = () => {
   const { data: usuarios, isLoading, error } = useFetchUsuarios();
 
-  if (isLoading) return <p>Cargando usuarios...</p>;
   if (error) return <p>Error al cargar usuarios</p>;
 
   return (
