@@ -133,3 +133,4 @@ function SidebarItem({ item, isOpen }: { item: any; isOpen: boolean }) {
     </div>
   );
 }
+

@@ -2166,7 +2166,34 @@
         "kind": 5,
         "importPath": "APIRest.settings",
         "description": "APIRest.settings",
-        "peekOfCode": "CORS_ALLOWED_ORIGINS = [\n    \"http://localhost:5173\",\n]\nROOT_URLCONF = 'APIRest.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {",
+        "peekOfCode": "CORS_ALLOWED_ORIGINS = [\n    \"http://localhost:5173\", \n]\nCORS_ALLOW_CREDENTIALS = True  # Permitir credenciales (cookies, auth headers)\nCORS_ALLOW_METHODS = [\"GET\", \"POST\", \"PUT\", \"PATCH\", \"DELETE\", \"OPTIONS\"]\nCORS_ALLOW_HEADERS = [\"Authorization\", \"Content-Type\"]\nROOT_URLCONF = 'APIRest.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',",
+        "detail": "APIRest.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOW_CREDENTIALS",
+        "kind": 5,
+        "importPath": "APIRest.settings",
+        "description": "APIRest.settings",
+        "peekOfCode": "CORS_ALLOW_CREDENTIALS = True  # Permitir credenciales (cookies, auth headers)\nCORS_ALLOW_METHODS = [\"GET\", \"POST\", \"PUT\", \"PATCH\", \"DELETE\", \"OPTIONS\"]\nCORS_ALLOW_HEADERS = [\"Authorization\", \"Content-Type\"]\nROOT_URLCONF = 'APIRest.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {",
+        "detail": "APIRest.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOW_METHODS",
+        "kind": 5,
+        "importPath": "APIRest.settings",
+        "description": "APIRest.settings",
+        "peekOfCode": "CORS_ALLOW_METHODS = [\"GET\", \"POST\", \"PUT\", \"PATCH\", \"DELETE\", \"OPTIONS\"]\nCORS_ALLOW_HEADERS = [\"Authorization\", \"Content-Type\"]\nROOT_URLCONF = 'APIRest.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [",
+        "detail": "APIRest.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOW_HEADERS",
+        "kind": 5,
+        "importPath": "APIRest.settings",
+        "description": "APIRest.settings",
+        "peekOfCode": "CORS_ALLOW_HEADERS = [\"Authorization\", \"Content-Type\"]\nROOT_URLCONF = 'APIRest.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
         "detail": "APIRest.settings",
         "documentation": {}
     },
