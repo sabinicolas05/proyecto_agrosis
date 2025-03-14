@@ -23,7 +23,7 @@ import { GiProcessor } from "react-icons/gi";
 
 const menuItems = [
   { id: 1, label: "Inicio", path: "/inicio", icon: <FaHome /> },
-  { id: 2, label: "Semillero", path: "/semilleros", icon: < FaCalendarAlt/> },
+  { id: 2, label: "Semillero", path: "/semilleros", icon: <FaCalendarAlt /> },
   {
     id: 3,
     label: "IoT",
@@ -31,7 +31,7 @@ const menuItems = [
     subItems: [
       { id: 4, label: "Tipos de sensor", path: "/iot/tipo-sensor", icon: <FaCloudRain /> },
       { id: 5, label: "Sensores", path: "/iot/sensores", icon: <FaTachometerAlt /> },
-      { id: 6, label: "Configuracion", path: "/iot/configuracion", icon: <FaTemperatureHigh /> },
+      { id: 6, label: "Configuración", path: "/iot/configuracion", icon: <FaTemperatureHigh /> },
     ],
   },
   {
@@ -47,17 +47,11 @@ const menuItems = [
       { id: 13, label: "Actividades", path: "/cultivo/actividades", icon: <FaTree /> },
     ],
   },
-
-  
-  { id: 14, label: "Usuarios", path: "/usuarios", icon: < FaUser/> },
-
+  { id: 14, label: "Usuarios", path: "/usuarios", icon: <FaUser /> },
   { id: 15, label: "Mapa", path: "/mapa", icon: <FaMapMarkerAlt /> },
   { id: 16, label: "Finanzas", path: "/finanzas", icon: <FaDollarSign /> },
   { id: 17, label: "Plagas", path: "/plagas", icon: <FaBug /> },
-
-
   { id: 18, label: "Inventario", path: "/inventario", icon: <FaBox /> },
-
 ];
 
 import LogoSena from "../assets/def_AGROSIS_LOGOTIC.png";
@@ -66,8 +60,8 @@ import Sena from "../assets/logo sena.png";
 export default function Navbar({ isOpen, toggleSidebar }: { isOpen: boolean; toggleSidebar: () => void }) {
   return (
     <aside
-      className={`h-screen bg-white shadow-lg transition-all duration-300 flex flex-col fixed top-0 bottom-0 z-50
-      ${isOpen ? "w-64 p-4" : "w-20 p-2"} rounded-r-2xl`}
+      className={`bg-white shadow-lg transition-all duration-300 flex flex-col fixed top-0 bottom-0 z-50
+      ${isOpen ? "w-64 p-4" : "w-20 p-2"} rounded-r-2xl overflow-y-auto max-h-screen`}
     >
       <div className="flex justify-between items-center">
         <Button isIconOnly variant="light" className="mb-4" onClick={toggleSidebar}>
@@ -133,4 +127,3 @@ function SidebarItem({ item, isOpen }: { item: any; isOpen: boolean }) {
     </div>
   );
 }
-
