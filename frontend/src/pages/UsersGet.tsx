@@ -40,12 +40,15 @@ const UsuariosList = () => {
                 <td className="px-4 py-2">{usuario.identificacion}</td>
                 <td className="px-4 py-2">{usuario.email}</td>
                 <td className="px-4 py-2">
-                  <Button 
-                    onClick={() => setUsuarioSeleccionado(usuario.id)}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
-                  >
-                    Editar
-                  </Button>
+                <Button 
+  onClick={() => {
+    console.log("🖱️ Click en Editar. ID seleccionado:", usuario.id);
+    setUsuarioSeleccionado(usuario.id);
+  }}
+  className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+>
+  Editar
+</Button>
                 </td>
               </tr>
             ))}

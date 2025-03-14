@@ -15,21 +15,24 @@ const EditarUsuarioModal = ({ id, onClose }) => {
     identificacion: "",
     is_staff: false,
     is_active: false,
+    password: "", // Nuevo campo de contraseña opcional
   });
 
   useEffect(() => {
-    if (usuario) {
-      setFormData({
-        username: usuario.username || "",
-        first_name: usuario.first_name || "",
-        last_name: usuario.last_name || "",
-        email: usuario.email || "",
-        identificacion: usuario.identificacion || "",
-        is_staff: usuario.is_staff || false,
-        is_active: usuario.is_active || false,
-      });
+    if (usuario && !isLoading) {
+      console.log("📝 Datos cargados en el formulario:", usuario);
+      setFormData((prev) => ({
+        ...prev,
+        username: usuario.username ?? "",
+        first_name: usuario.first_name ?? "",
+        last_name: usuario.last_name ?? "",
+        email: usuario.email ?? "",
+        identificacion: usuario.identificacion ?? "",
+        is_staff: usuario.is_staff ?? false,
+        is_active: usuario.is_active ?? false,
+      }));
     }
-  }, [usuario]);
+  }, [usuario, isLoading]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -41,20 +44,29 @@ const EditarUsuarioModal = ({ id, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUsuario(
-      { id, ...formData },
-      {
-        onSuccess: onClose,
-      }
-    );
-  };
+    console.log("📤 Enviando datos al backend:", formData);
+    
+    const payload = { id, ...formData };
+    if (!formData.password) {
+      delete payload.password; 
+    }
 
+    updateUsuario(payload, {
+      onSuccess: () => {
+        console.log("✅ Usuario actualizado correctamente");
+        onClose();
+      },
+      onError: (error) => {
+        console.error("❌ Error al actualizar usuario:", error);
+      },
+    });
+  };
+  
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-6 shadow-md rounded-lg w-96">
         <h2 className="text-lg font-bold mb-4">Editar Usuario</h2>
-        
-        {/* 🔹 Si está cargando, mostrar mensaje en lugar de retrasar la apertura del modal */}
+
         {isLoading ? (
           <p className="text-center text-gray-500">Cargando usuario...</p>
         ) : (
@@ -64,7 +76,8 @@ const EditarUsuarioModal = ({ id, onClose }) => {
             <Input label="Apellido" name="last_name" value={formData.last_name} onChange={handleChange} />
             <Input label="Email" type="email" name="email" value={formData.email} onChange={handleChange} required />
             <Input label="Identificación" name="identificacion" value={formData.identificacion} onChange={handleChange} required />
-            
+            <Input label="Contraseña (opcional)" type="password" name="password" value={formData.password} onChange={handleChange} />
+
             <label className="flex items-center gap-2 mt-2">
               <input type="checkbox" name="is_staff" checked={formData.is_staff} onChange={handleChange} /> Staff
             </label>
