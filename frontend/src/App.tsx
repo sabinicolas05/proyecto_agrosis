@@ -46,7 +46,7 @@ function App() {
           }
         >
           <Route element={<RegisterForm />} path="/register" />
-          <Route element={<IndexPage />} path="/index" />
+          <Route element={<IndexPage />} path="/inicio" />
           <Route element={<SensorConfigForm />} path="/iot/configuracion" />
           <Route element={<SensorForm />} path="/iot/sensores" />
           <Route element={<TipoSensorForm />} path="/iot/tipo-sensor" />
