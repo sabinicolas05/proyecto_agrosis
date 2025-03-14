@@ -23,14 +23,14 @@ export default function LoginForm() {
           <p className="mb-4">¡Bienvenido de vuelta!</p>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
-              <Label htmlFor="username">Correo</Label>
+              <Label htmlFor="username">Nombre de Usuario</Label>
               <Input
                 type="text"
                 id="username"
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                placeholder="Usuario@gmail.com"
+                placeholder="Usuario.."
               />
             </div>
             <div>
