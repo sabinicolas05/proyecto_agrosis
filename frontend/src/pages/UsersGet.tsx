@@ -55,6 +55,12 @@ const UsuariosList = () => {
           </tbody>
         </table>
       </div>
+      <br />
+      <a href="/register" className="hover:underline">
+  <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+    Registra un usuario
+  </button>
+</a>
 
       {/* Mostrar modal inmediatamente, pero indicar "Cargando..." si los datos aún no están listos */}
       {usuarioSeleccionado && (
