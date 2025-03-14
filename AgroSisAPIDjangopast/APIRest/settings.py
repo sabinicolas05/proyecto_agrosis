@@ -66,9 +66,12 @@ MIDDLEWARE = [
 
 #permiso para el react
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-   
+    "http://localhost:5173", 
 ]
+CORS_ALLOW_CREDENTIALS = True  # Permitir credenciales (cookies, auth headers)
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = ["Authorization", "Content-Type"]
+
 
 
 ROOT_URLCONF = 'APIRest.urls'
@@ -98,9 +101,9 @@ WSGI_APPLICATION = 'APIRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DjangoRest',
+        'NAME': 'agrosis_proyecto',
         'USER': 'postgres',
-        'PASSWORD': 'adso2024',
+        'PASSWORD': 'hate',
         'HOST': 'localhost',
         'PORT': '5432'
     }
