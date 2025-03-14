@@ -98,9 +98,9 @@ WSGI_APPLICATION = 'APIRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'agrosis_proyecto',
+        'NAME': 'DjangoRest',
         'USER': 'postgres',
-        'PASSWORD': 'hate',
+        'PASSWORD': 'adso2024',
         'HOST': 'localhost',
         'PORT': '5432'
     }
