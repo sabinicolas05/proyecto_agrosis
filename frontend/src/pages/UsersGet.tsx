@@ -1,12 +1,12 @@
+import { useState } from "react";
 import { useFetchUsuarios } from "@/hooks/useFetchUsuarios";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
-import { useNavigate } from "react-router-dom";
+import EditarUsuarioModal from "@/pages/EditarUsuario";
 
-// src\pages\UsersGet.tsx
 const UsuariosList = () => {
   const { data: usuarios, isLoading, error } = useFetchUsuarios();
-  const navigate = useNavigate(); // 🔹 Mover aquí la declaración de useNavigate
+  const [usuarioSeleccionado, setUsuarioSeleccionado] = useState<string | null>(null);
 
   if (error) return <p>Error al cargar usuarios</p>;
 
@@ -41,7 +41,7 @@ const UsuariosList = () => {
                 <td className="px-4 py-2">{usuario.email}</td>
                 <td className="px-4 py-2">
                   <Button 
-                    onClick={() => navigate(`/usuarios/editar/${usuario.id}`)}
+                    onClick={() => setUsuarioSeleccionado(usuario.id)}
                     className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
                   >
                     Editar
@@ -52,6 +52,14 @@ const UsuariosList = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Mostrar modal inmediatamente, pero indicar "Cargando..." si los datos aún no están listos */}
+      {usuarioSeleccionado && (
+        <EditarUsuarioModal 
+          id={usuarioSeleccionado} 
+          onClose={() => setUsuarioSeleccionado(null)}
+        />
+      )}
     </DefaultLayout>
   );
 };

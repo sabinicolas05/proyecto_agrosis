@@ -23,7 +23,7 @@ export const useLogin = () => {
         const data = await response.json();
         localStorage.setItem("token", data.access);
         toast.success("Inicio de sesión exitoso");
-        navigate("/index");
+        navigate("/inicio");
       } else {
         toast.error("Credenciales incorrectas");
       }
