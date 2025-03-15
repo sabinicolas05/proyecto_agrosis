@@ -3,10 +3,12 @@ import { useFetchUsuarios } from "@/hooks/useFetchUsuarios";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
 import EditarUsuarioModal from "@/pages/EditarUsuario";
-import RegisterUserModal from "@/pages/registerModalUsers"
+import RegisterUserModal from "@/pages/registerModalUsers"; // ✅ Ruta corregida
+
 const UsuariosList = () => {
   const { data: usuarios, isLoading, error } = useFetchUsuarios();
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState<string | null>(null);
+  const [mostrarModal, setMostrarModal] = useState(false); // Estado para mostrar el modal
 
   if (error) return <p>Error al cargar usuarios</p>;
 
@@ -40,34 +42,38 @@ const UsuariosList = () => {
                 <td className="px-4 py-2">{usuario.identificacion}</td>
                 <td className="px-4 py-2">{usuario.email}</td>
                 <td className="px-4 py-2">
-                <Button 
-  onClick={() => {
-    console.log("🖱️ Click en Editar. ID seleccionado:", usuario.id);
-    setUsuarioSeleccionado(usuario.id);
-  }}
-  className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
->
-  Editar
-</Button>
+                  <Button
+                    onClick={() => {
+                      console.log("🖱️ Click en Editar. ID seleccionado:", usuario.id);
+                      setUsuarioSeleccionado(usuario.id);
+                    }}
+                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+                  >
+                    Editar
+                  </Button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <br />
-      <a href="/register" className="hover:underline">
-  <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-700">
-    Registra un usuario
-  </button>
-</a>
 
-      {/* Mostrar modal inmediatamente, pero indicar "Cargando..." si los datos aún no están listos */}
+      <br />
+
+      {/* Botón para abrir el modal */}
+      <Button
+        onClick={() => setMostrarModal(true)}
+        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+      >
+        Registra un usuario
+      </Button>
+
+      {/* Mostrar modal de registro si está activo */}
+      {mostrarModal && <RegisterUserModal onClose={() => setMostrarModal(false)} />}
+
+      {/* Mostrar modal de edición si hay usuario seleccionado */}
       {usuarioSeleccionado && (
-        <EditarUsuarioModal 
-          id={usuarioSeleccionado} 
-          onClose={() => setUsuarioSeleccionado(null)}
-        />
+        <EditarUsuarioModal id={usuarioSeleccionado} onClose={() => setUsuarioSeleccionado(null)} />
       )}
     </DefaultLayout>
   );
