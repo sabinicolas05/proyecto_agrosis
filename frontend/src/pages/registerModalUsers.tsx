@@ -1,116 +1,93 @@
 import { useState } from "react";
-import { Button, Checkbox, Input, Label } from "@heroui/react";
+import { Button, Checkbox, Input } from "@heroui/react";
 import { toast } from "react-toastify";
-import  createUsuarioModal  from "@/hooks/useCreateUsuario";  // Corregí el nombre del hook aquí
+import { useCreateUsuario } from "@/hooks/useCreateUsuario"; // Importa el hook
 
-export default function RegisterForm() {
-  const { formData, handleChange, handleCheckboxChange, handleSubmit } = createUsuarioModal();  // Usamos correctamente el hook createUsuarioModal
-  const [errorMessage, setErrorMessage] = useState(""); // Estado para manejar el error de contraseñas
+const RegisterUserModal = ({ onClose }) => {
+  const { mutate: createUsuario, isLoading } = useCreateUsuario();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    identificacion: "",
+    password: "",
+    confirmPassword: "",
+    is_staff: false,
+    is_superuser: false,
+  });
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Verificación de que las contraseñas coinciden
+    if (!formData.username || !formData.email || !formData.password) {
+      toast.error("Todos los campos son obligatorios.");
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
-      setErrorMessage("Las contraseñas no coinciden.");
       toast.error("Las contraseñas no coinciden.");
       return;
     }
 
-    // Si las contraseñas coinciden, reseteamos el mensaje de error
-    setErrorMessage("");
+    const newUser = { ...formData };
+    delete newUser.confirmPassword; // No enviar confirmPassword al backend
 
-    // Aquí puedes llamar al método handleSubmit que enviará los datos al backend
-    handleSubmit(e);
+    createUsuario(newUser, {
+      onSuccess: () => {
+        toast.success("Usuario creado correctamente");
+        onClose(); // Cierra el modal
+      },
+      onError: (error) => {
+        console.error("❌ Error al crear usuario:", error);
+        toast.error("Error al crear usuario.");
+      },
+    });
   };
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
-        <h1 className="text-2xl font-bold text-center mb-4">Registro de Usuario</h1>
-        <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
-          <div>
-            <Label htmlFor="username">Nombre de usuario</Label>
-            <Input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              placeholder="Nombre de usuario"
-            />
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+      <div className="bg-white p-6 shadow-md rounded-lg w-96">
+        <h2 className="text-lg font-bold mb-4">Registrar Usuario</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">Usuario</label>
+          <Input name="username" value={formData.username} onChange={handleChange} required />
+
+          <label htmlFor="email">Email</label>
+          <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
+
+          <label htmlFor="identificacion">Identificación</label>
+          <Input name="identificacion" value={formData.identificacion} onChange={handleChange} required />
+
+          <label htmlFor="password">Contraseña</label>
+          <Input type="password" name="password" value={formData.password} onChange={handleChange} required />
+
+          <label htmlFor="confirmPassword">Confirmar contraseña</label>
+          <Input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+
+          <div className="flex gap-2">
+            <Checkbox name="is_staff" checked={formData.is_staff} onChange={handleChange} />
+            <label htmlFor="is_staff">Staff</label>
           </div>
-          <div>
-            <Label htmlFor="identificacion">Identificación</Label>
-            <Input
-              type="number"
-              id="identificacion"
-              name="identificacion"
-              value={formData.identificacion}
-              onChange={handleChange}
-              placeholder="Número de identificación"
-            />
-          </div>
-          <div>
-            <Label htmlFor="email">Correo electrónico</Label>
-            <Input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Correo electrónico"
-            />
-          </div>
-          <div>
-            <Label htmlFor="password">Contraseña</Label>
-            <Input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Contraseña"
-            />
-          </div>
-          <div>
-            <Label htmlFor="confirmPassword">Confirmar contraseña</Label>
-            <Input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirmar contraseña"
-            />
+          <div className="flex gap-2">
+            <Checkbox name="is_superuser" checked={formData.is_superuser} onChange={handleChange} />
+            <label htmlFor="is_superuser">Superusuario</label>
           </div>
 
-          {/* Mostrar mensaje de error si las contraseñas no coinciden */}
-          {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
-
-          <div className="flex gap-4">
-            <Checkbox
-              id="is_staff"
-              name="is_staff"
-              checked={formData.is_staff}
-              onChange={handleCheckboxChange}
-            />
-            <Label htmlFor="is_staff">Es staff</Label>
+          <div className="flex justify-end gap-2 mt-4">
+            <Button type="button" onClick={onClose}>Cancelar</Button>
+            <Button type="submit" disabled={isLoading}>{isLoading ? "Registrando..." : "Registrar"}</Button>
           </div>
-          <div className="flex gap-4">
-            <Checkbox
-              id="is_superuser"
-              name="is_superuser"
-              checked={formData.is_superuser}
-              onChange={handleCheckboxChange}
-            />
-            <Label htmlFor="is_superuser">Es superusuario</Label>
-          </div>
-          <Button type="submit" className="w-full">
-            Registrarse
-          </Button>
         </form>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default RegisterUserModal;

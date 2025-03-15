@@ -3,7 +3,7 @@ import { useFetchUsuarios } from "@/hooks/useFetchUsuarios";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
 import EditarUsuarioModal from "@/pages/EditarUsuario";
-
+import RegisterUserModal from "@/pages/registerModalUsers"
 const UsuariosList = () => {
   const { data: usuarios, isLoading, error } = useFetchUsuarios();
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState<string | null>(null);
