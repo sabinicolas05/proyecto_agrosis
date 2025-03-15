@@ -6,7 +6,7 @@ const updateUsuario = async ({ id, ...usuario }: any) => {
   
   axios.defaults.withCredentials = true; // Habilita el envío de cookies si es necesario
 
-  const { data } = await axios.put(
+  const { data } = await axios.patch( // Cambiar de PUT a PATCH
     `http://127.0.0.1:8000/api/usuario/${id}/`,
     usuario,
     {

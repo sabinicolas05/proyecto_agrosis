@@ -9,8 +9,6 @@ const EditarUsuarioModal = ({ id, onClose }) => {
 
   const [formData, setFormData] = useState({
     username: "",
-    first_name: "",
-    last_name: "",
     email: "",
     identificacion: "",
     is_staff: false,
@@ -24,8 +22,6 @@ const EditarUsuarioModal = ({ id, onClose }) => {
       setFormData((prev) => ({
         ...prev,
         username: usuario.username ?? "",
-        first_name: usuario.first_name ?? "",
-        last_name: usuario.last_name ?? "",
         email: usuario.email ?? "",
         identificacion: usuario.identificacion ?? "",
         is_staff: usuario.is_staff ?? false,
@@ -72,11 +68,9 @@ const EditarUsuarioModal = ({ id, onClose }) => {
         ) : (
           <form onSubmit={handleSubmit}>
             <Input label="Usuario" name="username" value={formData.username} onChange={handleChange} required />
-            <Input label="Nombre" name="first_name" value={formData.first_name} onChange={handleChange} />
-            <Input label="Apellido" name="last_name" value={formData.last_name} onChange={handleChange} />
             <Input label="Email" type="email" name="email" value={formData.email} onChange={handleChange} required />
             <Input label="Identificación" name="identificacion" value={formData.identificacion} onChange={handleChange} required />
-            <Input label="Contraseña (opcional)" type="password" name="password" value={formData.password} onChange={handleChange} />
+            <Input label="Contraseña (opcional)" type="text" name="password" value={formData.password} onChange={handleChange} />
 
             <label className="flex items-center gap-2 mt-2">
               <input type="checkbox" name="is_staff" checked={formData.is_staff} onChange={handleChange} /> Staff
