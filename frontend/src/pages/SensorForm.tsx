@@ -3,8 +3,10 @@ import { Button, Input } from "@heroui/react";
 import { usePostSensor } from "@/hooks/usePostSensor";
 import DefaultLayout from "@/layouts/default";
 import { Sensor } from "@/types/sensorTypes";
+import useAuth from "@/hooks/useAuth";
 
 const SensorForm = () => {
+  useAuth()
   const { register, handleSubmit, reset } = useForm<Sensor>(); // ⬅️ Ahora está tipado correctamente
   const { mutate: saveSensor, isLoading } = usePostSensor();
 

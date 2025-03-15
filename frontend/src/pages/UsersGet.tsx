@@ -4,8 +4,9 @@ import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
 import EditarUsuarioModal from "@/pages/EditarUsuario";
 import RegisterUserModal from "@/pages/registerModalUsers"; // ✅ Ruta corregida
-
+import useAuth from "@/hooks/useAuth"
 const UsuariosList = () => {
+  useAuth(); 
   const { data: usuarios, isLoading, error } = useFetchUsuarios();
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState<string | null>(null);
   const [mostrarModal, setMostrarModal] = useState(false); // Estado para mostrar el modal

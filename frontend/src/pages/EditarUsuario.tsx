@@ -2,8 +2,10 @@ import { useFetchUsuarioById } from "@/hooks/useFetchUsuarioById";
 import { useUpdateUsuario } from "@/hooks/useUpdateUsuario";
 import { useState, useEffect } from "react";
 import { Button, Input } from "@heroui/react";
+import useAuth from "@/hooks/useAuth"
 
 const EditarUsuarioModal = ({ id, onClose }) => {
+  useAuth()
   const { data: usuario, isLoading } = useFetchUsuarioById(id);
   const { mutate: updateUsuario, isLoading: isUpdating } = useUpdateUsuario();
 

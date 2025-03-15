@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { Button, Input } from "@heroui/react";
 import { usePostSemillero } from "@/hooks/usePostSemillero";
 import DefaultLayout from "@/layouts/default";
+import useAuth from "@/hooks/useAuth"
 
 const SemilleroForm = () => {
+  useAuth()
   const { register, handleSubmit, reset } = useForm();
   const { mutate: saveSemillero, isLoading } = usePostSemillero();
 

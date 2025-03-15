@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { Button, Input } from "@heroui/react";
 import { usePostConfiguration } from "@/hooks/useFetchConfigurations";
 import DefaultLayout from "@/layouts/default";
+import useAuth from "@/hooks/useAuth"
 
 const SensorConfigForm = () => {
+  useAuth()
   const { register, handleSubmit, reset } = useForm();
   const { mutate: saveConfiguration, isLoading } = usePostConfiguration();
 

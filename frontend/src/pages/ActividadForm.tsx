@@ -2,8 +2,11 @@ import { useForm } from "react-hook-form";
 import { Button, Input, Checkbox } from "@heroui/react";
 import { usePostActividad } from "@/hooks/usePostActividad";
 import DefaultLayout from "@/layouts/default";
+import useAuth from "@/hooks/useAuth"
+
 
 const ActividadForm = () => {
+  useAuth()
   const { register, handleSubmit, reset } = useForm();
   const { mutate: saveActividad, isLoading } = usePostActividad();
 

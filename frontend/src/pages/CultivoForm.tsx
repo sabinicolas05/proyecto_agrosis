@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { Button, Input, Textarea } from "@heroui/react";
 import { usePostCultivo } from "@/hooks/usePostCultivo";
 import DefaultLayout from "@/layouts/default";
+import useAuth from "@/hooks/useAuth"
 
 const CultivoForm = () => {
+  useAuth()
   const { register, handleSubmit, reset } = useForm();
   const { mutate: saveCultivo, isLoading } = usePostCultivo();
 

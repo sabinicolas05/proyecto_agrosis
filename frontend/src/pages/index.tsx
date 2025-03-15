@@ -1,8 +1,10 @@
 import DefaultLayout from "@/layouts/default";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import useAuth from "@/hooks/useAuth";
 
 export default function IndexPage() {
+  useAuth()
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">

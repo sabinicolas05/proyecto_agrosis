@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Button, Checkbox, Input } from "@heroui/react";
 import { toast } from "react-toastify";
 import { useCreateUsuario } from "@/hooks/useCreateUsuario"; // Importa el hook
+import useAuth from "@/hooks/useAuth"
 
 const RegisterUserModal = ({ onClose }) => {
+  useAuth()
   const { mutate: createUsuario, isLoading } = useCreateUsuario();
   const [formData, setFormData] = useState({
     username: "",

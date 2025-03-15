@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { Button, Input, Textarea } from "@heroui/react";
 import { usePostTipoEspecie } from "@/hooks/UsePostTipoEspecie";
 import DefaultLayout from "@/layouts/default";
+import useAuth from "@/hooks/useAuth"
 
 const TipoEspecieForm = () => {
+  useAuth()
   const { register, handleSubmit, reset } = useForm();
   const { mutate: saveTipoEspecie, isLoading } = usePostTipoEspecie();
 

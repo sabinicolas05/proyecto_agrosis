@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { Button, Input, Textarea } from "@heroui/react";
 import { usePostTipoSensor } from "@/hooks/usePostTipoSensor";
 import DefaultLayout from "@/layouts/default";
+import useAuth from "@/hooks/useAuth"
 
 const TipoSensorForm = () => {
+  useAuth();
   const { register, handleSubmit, reset } = useForm();
   const { mutate: saveTipoSensor, isLoading } = usePostTipoSensor();
 
