@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
-import { toast } from "react-toastify";
-import { useCreateSensor } from "@/pages/sensor/useCreateSensor"; // Importa el hook
 import useAuth from "@/hooks/useAuth";
+import { useCreateSensor } from "@/pages/sensor/useCreateSensor"; 
+import useFetchSensorOptions from "@/hooks/sensores/mapSensores";
+import { toast } from "react-toastify";
 
 const RegisterSensorModal = ({ onClose }) => {
   useAuth();
+  const { bancales, tipoSensores, configuraciones, cultivos } = useFetchSensorOptions();
   const { mutate: createSensor, isLoading } = useCreateSensor();
-  
+
   const [formData, setFormData] = useState({
     fk_bancal: "",
     fk_tipo_sensor: "",
@@ -26,16 +28,18 @@ const RegisterSensorModal = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     if (!formData.fk_bancal || !formData.fk_tipo_sensor || !formData.medicion) {
       toast.error("Los campos con * son obligatorios.");
       return;
     }
 
+    console.log("📤 Enviando datos al backend:", formData);
+    
     createSensor(formData, {
       onSuccess: () => {
-        toast.success("Sensor registrado correctamente");
-        onClose(); // Cierra el modal
+        toast.success("✅ Sensor registrado correctamente");
+        onClose();
       },
       onError: (error) => {
         console.error("❌ Error al registrar sensor:", error);
@@ -49,25 +53,55 @@ const RegisterSensorModal = ({ onClose }) => {
       <div className="bg-white p-6 shadow-md rounded-lg w-96">
         <h2 className="text-lg font-bold mb-4">Registrar Sensor</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="fk_bancal">Bancal *</label>
-          <Input name="fk_bancal" value={formData.fk_bancal} onChange={handleChange} required />
+          <label>Tipo de Sensor *</label>
+          <select name="fk_tipo_sensor" value={formData.fk_tipo_sensor} onChange={handleChange} required>
+            <option value="">Seleccione un tipo de sensor</option>
+            {tipoSensores.map((tipo) => (
+              <option key={tipo.id} value={tipo.id}>
+                {tipo.id} - {tipo.nombre}
+              </option>
+            ))}
+          </select>
 
-          <label htmlFor="fk_tipo_sensor">Tipo de Sensor *</label>
-          <Input name="fk_tipo_sensor" value={formData.fk_tipo_sensor} onChange={handleChange} required />
+          <label>Bancal *</label>
+          <select name="fk_bancal" value={formData.fk_bancal} onChange={handleChange} required>
+            <option value="">Seleccione un bancal</option>
+            {bancales.map((bancal) => (
+              <option key={bancal.id} value={bancal.id}>
+                {bancal.id} - {bancal.nombre}
+              </option>
+            ))}
+          </select>
 
-          <label htmlFor="fk_configuracion">Configuración</label>
-          <Input name="fk_configuracion" value={formData.fk_configuracion} onChange={handleChange} />
+          <label>Configuración</label>
+          <select name="fk_configuracion" value={formData.fk_configuracion} onChange={handleChange}>
+            <option value="">Seleccione una configuración</option>
+            {configuraciones.map((config) => (
+              <option key={config.id} value={config.id}>
+                {config.id} - {config.nombre}
+              </option>
+            ))}
+          </select>
 
-          <label htmlFor="fk_cultivo">Cultivo</label>
-          <Input name="fk_cultivo" value={formData.fk_cultivo} onChange={handleChange} />
+          <label>Cultivo</label>
+          <select name="fk_cultivo" value={formData.fk_cultivo} onChange={handleChange}>
+            <option value="">Seleccione un cultivo</option>
+            {cultivos.map((cultivo) => (
+              <option key={cultivo.id} value={cultivo.id}>
+                {cultivo.id} - {cultivo.nombre}
+              </option>
+            ))}
+          </select>
 
-          <label htmlFor="medicion">Medición *</label>
-          <Input type="number" name="medicion" value={formData.medicion} onChange={handleChange} required />
+          <label>Medición *</label>
+          <Input type="number" step="0.01" name="medicion" value={formData.medicion} onChange={handleChange} required />
 
           <div className="flex justify-end gap-2 mt-4">
-            <Button type="button" onClick={onClose} className="bg-gray-400">Cancelar</Button>
-            <Button type="submit" disabled={isLoading} className="bg-blue-500">
-              {isLoading ? "Registrando..." : "Registrar"}
+            <Button type="button" className="bg-gray-400 text-white px-4 py-2 rounded" onClick={onClose}>
+              Cancelar
+            </Button>
+            <Button type="submit" disabled={isLoading} className="bg-blue-500 text-white px-4 py-2 rounded">
+              {isLoading ? "Registrando..." : "Guardar"}
             </Button>
           </div>
         </form>
