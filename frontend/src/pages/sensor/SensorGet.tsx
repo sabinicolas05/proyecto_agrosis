@@ -35,10 +35,10 @@ const SensoresList = () => {
           <tbody>
             {sensores?.map((sensor) => (
               <tr key={sensor.id} className="border-b">
-                <td className="px-4 py-2">{sensor.fk_bancal || "N/A"}</td>
-                <td className="px-4 py-2">{sensor.fk_tipo_sensor || "N/A"}</td>
-                <td className="px-4 py-2">{sensor.fk_configuracion || "N/A"}</td>
-                <td className="px-4 py-2">{sensor.fk_cultivo || "N/A"}</td>
+<td className="px-4 py-2">{sensor.fk_bancal_nombre || "N/A"}</td>
+<td className="px-4 py-2">{sensor.fk_tipo_sensor_nombre || "N/A"}</td>
+<td className="px-4 py-2">{sensor.fk_configuracion_nombre || "N/A"}</td>
+<td className="px-4 py-2">{sensor.fk_cultivo_nombre || "N/A"}</td>
                 <td className="px-4 py-2">{sensor.medicion}</td>
                 <td className="px-4 py-2 flex gap-2">
                   <Button
