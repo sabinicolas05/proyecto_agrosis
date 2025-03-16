@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFetchSensors } from "@/hooks/sensores/useFetchSensors";
+import { useDeleteSensor } from "@/hooks/sensores/useDeleteSensor";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
 import EditarSensorModal from "@/pages/sensor/EditarSensor";
@@ -8,9 +9,11 @@ import useAuth from "@/hooks/useAuth";
 
 const SensoresList = () => {
   useAuth();
-  const { data: sensores, isLoading, error } = useFetchSensors();
+  const { data: sensores, error } = useFetchSensors();
+  const { mutate: deleteSensor } = useDeleteSensor();
   const [sensorSeleccionado, setSensorSeleccionado] = useState<string | null>(null);
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [sensorAEliminar, setSensorAEliminar] = useState<string | null>(null);
 
   if (error) return <p>Error al cargar sensores</p>;
 
@@ -37,15 +40,18 @@ const SensoresList = () => {
                 <td className="px-4 py-2">{sensor.fk_configuracion || "N/A"}</td>
                 <td className="px-4 py-2">{sensor.fk_cultivo || "N/A"}</td>
                 <td className="px-4 py-2">{sensor.medicion}</td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 flex gap-2">
                   <Button
-                    onClick={() => {
-                      console.log("Editando sensor con ID:", sensor.id);
-                      setSensorSeleccionado(sensor.id);
-                    }}
+                    onClick={() => setSensorSeleccionado(sensor.id)}
                     className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
                   >
                     Editar
+                  </Button>
+                  <Button
+                    onClick={() => setSensorAEliminar(sensor.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                  >
+                    Eliminar
                   </Button>
                 </td>
               </tr>
@@ -66,13 +72,30 @@ const SensoresList = () => {
       {mostrarModal && <RegisterSensorModal onClose={() => setMostrarModal(false)} />}
 
       {sensorSeleccionado && (
-        <EditarSensorModal
-          id={sensorSeleccionado}
-          onClose={() => {
-            console.log("Cerrando modal de edición");
-            setSensorSeleccionado(null);
-          }}
-        />
+        <EditarSensorModal id={sensorSeleccionado} onClose={() => setSensorSeleccionado(null)} />
+      )}
+
+      {sensorAEliminar && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 shadow-md rounded-lg w-96">
+            <h2 className="text-lg font-bold mb-4">¿Eliminar Sensor?</h2>
+            <p className="mb-4">Esta acción no se puede deshacer.</p>
+            <div className="flex justify-end gap-2">
+              <Button className="bg-gray-400 text-white px-4 py-2 rounded" onClick={() => setSensorAEliminar(null)}>
+                Cancelar
+              </Button>
+              <Button
+                className="bg-red-500 text-white px-4 py-2 rounded"
+                onClick={() => {
+                  deleteSensor(sensorAEliminar);
+                  setSensorAEliminar(null);
+                }}
+              >
+                Eliminar
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
     </DefaultLayout>
   );
