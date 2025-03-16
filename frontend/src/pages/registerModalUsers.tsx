@@ -93,3 +93,4 @@ const RegisterUserModal = ({ onClose }) => {
 };
 
 export default RegisterUserModal;
+

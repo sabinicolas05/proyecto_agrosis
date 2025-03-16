@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { toast } from "react-toastify";
 import Label from "@/components/Label";
@@ -6,9 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 import LogoAgrosis from "@/assets/def_AGROSIS_LOGOTIC.png";
 import SenaLogo from "@/assets/logo sena.png";
+import NotificationModal from "@/pages/NotificacionModal";
 
 export default function LoginForm() {
   const { formData, handleChange, handleSubmit } = useLogin();
+  const [modalAbierto, setModalAbierto] = useState(false);
 
   return (
     <section className="flex items-center justify-center min-h-screen bg-gray-100 relative">
@@ -52,6 +55,10 @@ export default function LoginForm() {
             </div>
             <Button type="submit" className="w-full bg-green-600 text-white">Iniciar</Button>
           </form>
+          {/* Botón para activar la notificación */}
+          <Button onClick={() => setModalAbierto(true)} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+            como usar el login
+          </Button>
         </div>
 
         {/* Sección Derecha - Imagen y mensaje */}
@@ -59,9 +66,14 @@ export default function LoginForm() {
           <p className="text-center text-lg font-semibold mb-4">¡Recuerda también descargar la App Móvil!</p>
           <img src={LogoAgrosis} alt="Logo Agrosis" className="w-40" />
         </div>
-
-        
       </div>
+
+      {/* Modal de Notificación */}
+      <NotificationModal
+        isOpen={modalAbierto}
+        onClose={() => setModalAbierto(false)}
+        message={"Como usar el login:\n 1)Crear un Superuser en el CMD del proyecto Django:\npython manage.py createsuperuser\n    \n 2) iniciar sesion en este login con tu superuser, ◇Username y ◇Password \n   \n 3) Ingresa y registra un nuevo usuario en el apartado de usuarios llenando el respectivo formulario \n   \n 4)Listo ya puedes iniciar sesion e ingresar a la aplicacion con cualquier usuario" }
+        />
     </section>
   );
 }
