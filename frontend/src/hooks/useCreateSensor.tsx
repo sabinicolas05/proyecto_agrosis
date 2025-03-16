@@ -1,13 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-const updateSensor = async ({ id, ...sensor }: any) => {
+const createSensor = async (sensor: any) => {
   const token = localStorage.getItem("token"); // Obtiene el token almacenado
-  
-  axios.defaults.withCredentials = true; // Habilita el envío de cookies si es necesario
 
-  const { data } = await axios.patch( // Cambiar de PUT a PATCH
-    `http://127.0.0.1:8000/api/sensor/${id}/`,
+  const { data } = await axios.post(
+    "http://127.0.0.1:8000/api/sensor/",
     sensor,
     {
       headers: {
@@ -20,15 +18,13 @@ const updateSensor = async ({ id, ...sensor }: any) => {
   return data;
 };
 
-export const useUpdateSensor = () => {
+export const useCreateSensor = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: updateSensor,
+    mutationFn: createSensor,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["sensores"] }); // Refresca la lista de sensores
     },
   });
 };
-
-// Importado en src/pages/EditarSensor.tsx

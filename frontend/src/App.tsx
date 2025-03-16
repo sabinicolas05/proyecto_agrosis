@@ -15,7 +15,7 @@ import LoteForm from "./pages/LoteForm";
 import SemilleroForm from "./pages/SemilleroForm";
 import CultivoForm from "./pages/CultivoForm";
 import ActividadForm from "./pages/ActividadForm";
-import SensorForm from "./pages/SensorForm";
+import SensorForm from "./pages/SensorGet";
 import TipoSensorForm from "./pages/TipoSensorForm";
 import UsuariosList from "./pages/UsersGet";
 import EditarUsuarioModal from "./pages/EditarUsuario";
