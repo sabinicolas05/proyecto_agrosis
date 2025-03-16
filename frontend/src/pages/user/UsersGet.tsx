@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useFetchUsuarios } from "@/hooks/users/useFetchUsuarios";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
-import EditarUsuarioModal from "@/pages/EditarUsuario";
-import RegisterUserModal from "@/pages/registerModalUsers"; // ✅ Ruta corregida
+import EditarUsuarioModal from "@/pages/user/EditarUsuario";
+import RegisterUserModal from "@/pages/user/registerModalUsers"; // ✅ Ruta corregida
 import useAuth from "@/hooks/useAuth"
 const UsuariosList = () => {
   useAuth(); 

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useFetchSensors } from "@/hooks/sensores/useFetchSensors";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
-import EditarSensorModal from "@/pages/EditarSensor";
-import RegisterSensorModal from "@/pages/registerModalSensor";
+import EditarSensorModal from "@/pages/sensor/EditarSensor";
+import RegisterSensorModal from "@/pages/sensor/registerModalSensor";
 import useAuth from "@/hooks/useAuth";
 
 const SensoresList = () => {

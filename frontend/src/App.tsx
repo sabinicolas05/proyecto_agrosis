@@ -6,20 +6,20 @@ import IndexPage from "@/pages/index";
 import PricingPage from "@/pages/pricing";
 import BlogPage from "@/pages/blog";
 import AboutPage from "@/pages/about";
-import SensorConfigForm from "@/pages/sensorConfigForm";
+import SensorConfigForm from "@/pages/sensor/sensorConfigForm";
 import LoginForm from "@/pages/login";
 import RegisterForm from "./pages/register";
-import TipoEspecieForm   from "./pages/tipo_especie_form";
-import EspecieForm from "./pages/EspecieForm";
-import LoteForm from "./pages/LoteForm";
-import SemilleroForm from "./pages/SemilleroForm";
-import CultivoForm from "./pages/CultivoForm";
-import ActividadForm from "./pages/ActividadForm";
-import SensorForm from "./pages/SensorGet";
-import TipoSensorForm from "./pages/TipoSensorForm";
-import UsuariosList from "./pages/UsersGet";
-import EditarUsuarioModal from "./pages/EditarUsuario";
-import RegisterUserModal from "./pages/registerModalUsers";
+import TipoEspecieForm   from "./pages/especie/tipo_especie_form";
+import EspecieForm from "./pages/especie/EspecieForm";
+import LoteForm from "./pages/lote/LoteForm";
+import SemilleroForm from "./pages/semillero/SemilleroForm";
+import CultivoForm from "./pages/trazabilidad/CultivoForm";
+import ActividadForm from "./pages/actividad/ActividadForm";
+import SensorForm from "./pages/sensor/SensorGet";
+import TipoSensorForm from "./pages/sensor/TipoSensorForm";
+import UsuariosList from "./pages/user/UsersGet";
+import EditarUsuarioModal from "./pages/user/EditarUsuario";
+import RegisterUserModal from "./pages/user/registerModalUsers";
 
 function App() {
   return (
