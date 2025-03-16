@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Input } from "@heroui/react";
-import { usePostEspecie } from "@/hooks/usePostEspecie";
+import { usePostEspecie } from "@/hooks/trazabilidad/especie/usePostEspecie";
 import DefaultLayout from "@/layouts/default";
 import useAuth from "@/hooks/useAuth"
 

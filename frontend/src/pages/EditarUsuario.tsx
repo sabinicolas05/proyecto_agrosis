@@ -1,5 +1,5 @@
-import { useFetchUsuarioById } from "@/hooks/useFetchUsuarioById";
-import { useUpdateUsuario } from "@/hooks/useUpdateUsuario";
+import { useFetchUsuarioById } from "@/hooks/users/useFetchUsuarioById";
+import { useUpdateUsuario } from "@/hooks/users/useUpdateUsuario";
 import { useState, useEffect } from "react";
 import { Button, Input } from "@heroui/react";
 import useAuth from "@/hooks/useAuth"

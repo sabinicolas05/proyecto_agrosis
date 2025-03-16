@@ -1,5 +1,5 @@
-import { useFetchSensorById } from "@/hooks/useFetchSensorById";
-import { useUpdateSensor } from "@/hooks/useUpdateSensor";
+import { useFetchSensorById } from "@/hooks/sensores/useFetchSensorById";
+import { useUpdateSensor } from "@/hooks/sensores/useUpdateSensor";
 import { useState, useEffect } from "react";
 import { Button, Input } from "@heroui/react";
 import useAuth from "@/hooks/useAuth";

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Input, Textarea } from "@heroui/react";
-import { usePostCultivo } from "@/hooks/usePostCultivo";
+import { usePostCultivo } from "@/hooks/trazabilidad/cultivo/usePostCultivo";
 import DefaultLayout from "@/layouts/default";
 import useAuth from "@/hooks/useAuth"
 

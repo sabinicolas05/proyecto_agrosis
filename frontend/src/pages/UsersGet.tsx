@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useFetchUsuarios } from "@/hooks/useFetchUsuarios";
+import { useFetchUsuarios } from "@/hooks/users/useFetchUsuarios";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
 import EditarUsuarioModal from "@/pages/EditarUsuario";
@@ -81,3 +81,4 @@ const UsuariosList = () => {
 };
 
 export default UsuariosList;
+

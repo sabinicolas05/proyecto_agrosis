@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useFetchSensors } from "@/hooks/useFetchSensors";
+import { useFetchSensors } from "@/hooks/sensores/useFetchSensors";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
 import EditarSensorModal from "@/pages/EditarSensor";

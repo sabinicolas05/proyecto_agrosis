@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { toast } from "react-toastify";
-import { useCreateSensor } from "@/hooks/useCreateSensor"; // Importa el hook
+import { useCreateSensor } from "@/pages/useCreateSensor"; // Importa el hook
 import useAuth from "@/hooks/useAuth";
 
 const RegisterSensorModal = ({ onClose }) => {

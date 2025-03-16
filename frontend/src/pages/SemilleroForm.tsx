@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Input } from "@heroui/react";
-import { usePostSemillero } from "@/hooks/usePostSemillero";
+import { usePostSemillero } from "@/hooks/trazabilidad/semillero/usePostSemillero";
 import DefaultLayout from "@/layouts/default";
 import useAuth from "@/hooks/useAuth"
 

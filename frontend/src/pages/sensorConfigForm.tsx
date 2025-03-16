@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Input } from "@heroui/react";
-import { usePostConfiguration } from "@/hooks/useFetchConfigurations";
+import { usePostConfiguration } from "@/hooks/sensores/useFetchConfigurations";
 import DefaultLayout from "@/layouts/default";
 import useAuth from "@/hooks/useAuth"
 

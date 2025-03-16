@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Input, Textarea } from "@heroui/react";
-import { usePostTipoSensor } from "@/hooks/usePostTipoSensor";
+import { usePostTipoSensor } from "@/hooks/sensores/usePostTipoSensor";
 import DefaultLayout from "@/layouts/default";
 import useAuth from "@/hooks/useAuth"
 

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Input, Checkbox } from "@heroui/react";
-import { usePostActividad } from "@/hooks/usePostActividad";
+import { usePostActividad } from "@/hooks/trazabilidad/actividad/usePostActividad";
 import DefaultLayout from "@/layouts/default";
 import useAuth from "@/hooks/useAuth"
 

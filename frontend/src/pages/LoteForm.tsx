@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button, Input } from "@heroui/react";
-import { usePostLote } from "@/hooks/usePostLote";
+import { usePostLote } from "@/hooks/trazabilidad/lote/usePostLote";
 import DefaultLayout from "@/layouts/default";
 import useAuth from "@/hooks/useAuth"
 
