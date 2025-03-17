@@ -20,7 +20,7 @@ import TipoSensoresList from "./pages/sensor/tipo_sensor/TipoSensorGet";
 import UsuariosList from "./pages/user/UsersGet";
 import EditarUsuarioModal from "./pages/user/EditarUsuario";
 import RegisterUserModal from "./pages/user/registerModalUsers";
-
+import BancalesList from "./pages/bancal/BancalGet";
 function App() {
   return (
     <>
@@ -56,6 +56,7 @@ function App() {
           <Route element={<LoteForm />} path="cultivo/lotes/" />
           <Route element={<SemilleroForm />} path="/semilleros" />
           <Route element={<CultivoForm />} path="/cultivo/cultivo" />
+          <Route element={<BancalesList />} path="/cultivo/bancal" />
           <Route element={<ActividadForm />} path="/cultivo/actividades" />
           <Route element={<UsuariosList />} path="/usuarios" />
           <Route element={<EditarUsuarioModal />} path="/usuarios/editar/:id" />
