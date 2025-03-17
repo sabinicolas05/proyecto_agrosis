@@ -6,7 +6,7 @@ interface TipoSensor {
   tipo: string;
 }
 
-const postTipoSensor = async (nuevoTipoSensor: TipoSensor) => {
+const createTipoSensor = async (nuevoTipoSensor: TipoSensor) => {
   const token = localStorage.getItem("token");
 
   const response = await fetch("http://127.0.0.1:8000/api/tiposensor/", {
@@ -25,9 +25,9 @@ const postTipoSensor = async (nuevoTipoSensor: TipoSensor) => {
   return response.json();
 };
 
-export const usePostTipoSensor = () => {
+export const usecreateTipoSensor = () => {
   return useMutation({
-    mutationFn: postTipoSensor,
+    mutationFn: createTipoSensor,
     onSuccess: () => {
       toast.success("✅ Tipo de Sensor registrado exitosamente");
     },

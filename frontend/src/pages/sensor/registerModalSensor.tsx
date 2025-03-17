@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
 import useAuth from "@/hooks/useAuth";
-import { useCreateSensor } from "@/pages/sensor/useCreateSensor"; 
+import { useCreateSensor } from "@/hooks/sensores/tipo_sensor/useCreateSensor"; 
 import useFetchSensorOptions from "@/hooks/sensores/mapSensores";
 import { toast } from "react-toastify";
 

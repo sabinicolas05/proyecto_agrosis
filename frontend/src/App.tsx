@@ -16,7 +16,7 @@ import SemilleroForm from "./pages/semillero/SemilleroForm";
 import CultivoForm from "./pages/trazabilidad/CultivoForm";
 import ActividadForm from "./pages/actividad/ActividadForm";
 import SensorForm from "./pages/sensor/SensorGet";
-import TipoSensorForm from "./pages/sensor/TipoSensorForm";
+import TipoSensoresList from "./pages/sensor/tipo_sensor/TipoSensorGet";
 import UsuariosList from "./pages/user/UsersGet";
 import EditarUsuarioModal from "./pages/user/EditarUsuario";
 import RegisterUserModal from "./pages/user/registerModalUsers";
@@ -50,7 +50,7 @@ function App() {
           <Route element={<IndexPage />} path="/inicio" />
           <Route element={<SensorConfigForm />} path="/iot/configuracion" />
           <Route element={<SensorForm />} path="/iot/sensores" />
-          <Route element={<TipoSensorForm />} path="/iot/tipo-sensor" />
+          <Route element={<TipoSensoresList />} path="/iot/tipo-sensor" />
           <Route element={<TipoEspecieForm />} path="cultivo/tipoespecie/" />
           <Route element={<EspecieForm />} path="cultivo/especies/" />
           <Route element={<LoteForm />} path="cultivo/lotes/" />
