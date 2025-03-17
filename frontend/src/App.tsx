@@ -10,7 +10,7 @@ import SensorConfigForm from "@/pages/sensor/configuracion/ConfigsensorGet";
 import LoginForm from "@/pages/login";
 import RegisterForm from "./pages/register";
 import TipoEspecieForm   from "./pages/tipo_especie/tipo_especie_Get";
-import EspecieForm from "./pages/especie/EspecieForm";
+import EspecieForm from "./pages/especie/EspecieGet";
 import LoteForm from "./pages/lote/LoteGet";
 import SemilleroForm from "./pages/semillero/SemilleroForm";
 import CultivoForm from "./pages/trazabilidad/CultivoForm";

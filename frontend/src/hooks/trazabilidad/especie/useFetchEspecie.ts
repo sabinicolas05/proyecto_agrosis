@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-const fetchTiposEspecie = async () => {
+const fetchEspecie = async () => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch("http://127.0.0.1:8000/api/tipo_especie/", {
+  const response = await fetch("http://127.0.0.1:8000/api/especie/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -12,15 +12,15 @@ const fetchTiposEspecie = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Error al obtener los Tipos de Especie");
+    throw new Error("Error al obtener las especies");
   }
 
   return response.json();
 };
 
-export const useFetchTipoEspecie = () => {
+export const useFetchEspecie = () => {
   return useQuery({
-    queryKey: ["tipoEspecie"],
-    queryFn: fetchTiposEspecie,
+    queryKey: ["especies"],
+    queryFn: fetchEspecie,
   });
 };

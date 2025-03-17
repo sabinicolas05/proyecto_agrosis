@@ -1,7 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const postEspecie = async (nuevaEspecie: { fk_tipo_especie: number; nombre: string }) => {
+interface Especie {
+  fk_tipo_especie: number | null;
+  nombre: string;
+}
+
+const createEspecie = async (nuevaEspecie: Especie) => {
   const token = localStorage.getItem("token");
 
   const response = await fetch("http://127.0.0.1:8000/api/especie/", {
@@ -14,20 +19,20 @@ const postEspecie = async (nuevaEspecie: { fk_tipo_especie: number; nombre: stri
   });
 
   if (!response.ok) {
-    throw new Error("Error al registrar la Especie");
+    throw new Error("Error al registrar la especie");
   }
 
   return response.json();
 };
 
-export const usePostEspecie = () => {
+export const useCreateEspecie = () => {
   return useMutation({
-    mutationFn: postEspecie,
-    onSuccess: (data) => {
-      toast.success(`✅ Especie "${data.nombre}" registrada correctamente`);
+    mutationFn: createEspecie,
+    onSuccess: () => {
+      toast.success("✅ Especie registrada exitosamente");
     },
     onError: () => {
-      toast.error("❌ Error al registrar la Especie");
+      toast.error("❌ Error al registrar la especie");
     },
   });
 };
