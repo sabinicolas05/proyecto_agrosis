@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Button, Input, Select } from "@heroui/react";
 import useAuth from "@/hooks/useAuth";
 import { useCreateEspecie } from "@/hooks/trazabilidad/especie/useCreateEspecie";
-import { useFetchEspecie } from "@/hooks/trazabilidad/especie/useFetchEspecie"; // Cambio aquí
+import { useFetchEspecie } from "@/hooks/trazabilidad/especie/useFetchEspecie";
 import { toast } from "react-toastify";
 
 const RegisterEspecieModal = ({ onClose }) => {
   useAuth();
   const { mutate: createEspecie, isLoading } = useCreateEspecie();
-  const { data: tiposEspecies } = useFetchEspecie(); // Cambio aquí
+  const { data: tiposEspecies } = useFetchEspecie();
 
   const [formData, setFormData] = useState({
     fk_tipo_especie: "",
@@ -55,10 +55,15 @@ const RegisterEspecieModal = ({ onClose }) => {
               name="fk_tipo_especie"
               value={formData.fk_tipo_especie}
               onChange={(value) => handleChange("fk_tipo_especie", value)}
-              options={tiposEspecies?.map((tipo) => ({
-                value: tipo.id,
-                label: tipo.tipo,
-              }))}
+              options={
+                tiposEspecies && Array.isArray(tiposEspecies)
+                  ? tiposEspecies.map((tipo) => ({
+                      value: tipo.id,
+                      label: tipo.tipo,
+                    }))
+                  : []
+              }
+              placeholder="Seleccione un tipo"
               required
             />
           </div>
