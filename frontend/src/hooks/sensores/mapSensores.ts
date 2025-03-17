@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useFetchSensorOptions = () => {
+  
   const [bancales, setBancales] = useState([]);
   const [tipoSensores, setTipoSensores] = useState([]);
   const [configuraciones, setConfiguraciones] = useState([]);
@@ -30,6 +31,8 @@ const useFetchSensorOptions = () => {
         setTipoSensores(tipoSensoresRes.data);
         setConfiguraciones(configuracionesRes.data);
         setCultivos(cultivosRes.data);
+
+        
       } catch (err) {
         setError(err);
         console.error("Error al obtener datos", err);

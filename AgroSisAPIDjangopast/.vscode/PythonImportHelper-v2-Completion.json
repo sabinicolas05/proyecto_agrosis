@@ -170,6 +170,14 @@
         "documentation": {}
     },
     {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "status",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -1152,14 +1160,6 @@
         "description": "rest_framework.routers",
         "isExtraImport": true,
         "detail": "rest_framework.routers",
-        "documentation": {}
-    },
-    {
-        "label": "ModelSerializer",
-        "importPath": "rest_framework.serializers",
-        "description": "rest_framework.serializers",
-        "isExtraImport": true,
-        "detail": "rest_framework.serializers",
         "documentation": {}
     },
     {
@@ -2841,7 +2841,7 @@
         "kind": 6,
         "importPath": "apps.IoT.models.Configuracion_model",
         "description": "apps.IoT.models.Configuracion_model",
-        "peekOfCode": "class Configuracion(models.Model):\n    tipo_cultivo = models.CharField(max_length=100)\n    tipo_sensor = models.CharField(max_length=100)\n    valor_min =  models.DecimalField(max_digits=10, decimal_places=2) \n    valor_max =  models.DecimalField(max_digits=10, decimal_places=2) \n    def __str__(self):\n        return str(self.valor_min) + str(self.valor_max)",
+        "peekOfCode": "class Configuracion(models.Model):\n    tipo_cultivo = models.CharField(max_length=100)\n    tipo_sensor = models.CharField(max_length=100)\n    valor_min =  models.DecimalField(max_digits=10, decimal_places=2) \n    valor_max =  models.DecimalField(max_digits=10, decimal_places=2) \n    def __str__(self):\n        return f\"Configuración ({self.tipo_cultivo} - {self.tipo_sensor}): Min {self.valor_min}, Max {self.valor_max}\"",
         "detail": "apps.IoT.models.Configuracion_model",
         "documentation": {}
     },
@@ -2850,7 +2850,7 @@
         "kind": 6,
         "importPath": "apps.IoT.models.Sensor_model",
         "description": "apps.IoT.models.Sensor_model",
-        "peekOfCode": "class Sensor(models.Model):\n    fk_bancal = models.ForeignKey(Bancal,on_delete=models.SET_NULL,null=True)\n    fk_tipo_sensor = models.ForeignKey(Tipo_Sensor,on_delete=models.SET_NULL,null=True)\n    fk_configuracion = models.ForeignKey(Configuracion,on_delete=models.SET_NULL,null=True)\n    fk_cultivo = models.ForeignKey(Cultivo,on_delete=models.SET_NULL,null=True)\n    medicion = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)\n    def __str__(self):\n        return str(self.fk_tipo_sensor) + str(self.fk_bancal) + str(self.fk_cultivo) + str(self.fk_configuracion) + str(self.medicion)",
+        "peekOfCode": "class Sensor(models.Model):\n    fk_bancal = models.ForeignKey(Bancal, on_delete=models.SET_NULL, null=True)\n    fk_tipo_sensor = models.ForeignKey(Tipo_Sensor, on_delete=models.SET_NULL, null=True)\n    fk_configuracion = models.ForeignKey(Configuracion, on_delete=models.SET_NULL, null=True)\n    fk_cultivo = models.ForeignKey(Cultivo, on_delete=models.SET_NULL, null=True)\n    medicion = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)\n    def __str__(self):\n        return f\"Tipo: {self.fk_tipo_sensor}, Bancal: {self.fk_bancal}, Cultivo: {self.fk_cultivo}, Config: {self.fk_configuracion}, Medición: {self.medicion}\"",
         "detail": "apps.IoT.models.Sensor_model",
         "documentation": {}
     },
@@ -2904,7 +2904,7 @@
         "kind": 6,
         "importPath": "apps.IoT.serializers.SensorSerializer",
         "description": "apps.IoT.serializers.SensorSerializer",
-        "peekOfCode": "class SensorSerializer(ModelSerializer):\n    class Meta:\n        model = Sensor\n        fields = '__all__'",
+        "peekOfCode": "class SensorSerializer(serializers.ModelSerializer):\n    fk_bancal_nombre = serializers.CharField(source=\"fk_bancal.nombre\", read_only=True)\n    fk_tipo_sensor_nombre = serializers.CharField(source=\"fk_tipo_sensor.nombre\", read_only=True)\n    fk_configuracion_nombre = serializers.CharField(source=\"fk_configuracion.nombre\", read_only=True)\n    fk_cultivo_nombre = serializers.CharField(source=\"fk_cultivo.nombre\", read_only=True)\n    valor_min = serializers.DecimalField(source=\"fk_configuracion.valor_min\", max_digits=10, decimal_places=2, read_only=True)\n    valor_max = serializers.DecimalField(source=\"fk_configuracion.valor_max\", max_digits=10, decimal_places=2, read_only=True)\n    class Meta:\n        model = Sensor\n        fields = [",
         "detail": "apps.IoT.serializers.SensorSerializer",
         "documentation": {}
     },

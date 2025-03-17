@@ -12,7 +12,7 @@ const fetchSensors = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Error al obtener los sensores");
+    throw new Error("Error al obtener los sensores"); 
   }
 
   return response.json();

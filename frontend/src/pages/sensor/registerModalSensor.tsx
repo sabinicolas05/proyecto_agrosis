@@ -74,14 +74,14 @@ const RegisterSensorModal = ({ onClose }) => {
           </select>
 
           <label>Configuración</label>
-          <select name="fk_configuracion" value={formData.fk_configuracion} onChange={handleChange}>
-            <option value="">Seleccione una configuración</option>
-            {configuraciones.map((config) => (
-              <option key={config.id} value={config.id}>
-                {config.id} - {config.nombre}
-              </option>
-            ))}
-          </select>
+<select name="fk_configuracion" value={formData.fk_configuracion} onChange={handleChange}>
+  <option value="">Seleccione una configuración</option>
+  {configuraciones.map((config) => (
+    <option key={config.id} value={config.id}>
+      {config.id} - Min: {config.valor_min}, Max: {config.valor_max}
+    </option>
+  ))}
+</select>
 
           <label>Cultivo</label>
           <select name="fk_cultivo" value={formData.fk_cultivo} onChange={handleChange}>

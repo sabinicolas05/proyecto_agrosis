@@ -6,4 +6,4 @@ class Configuracion(models.Model):
     valor_min =  models.DecimalField(max_digits=10, decimal_places=2) 
     valor_max =  models.DecimalField(max_digits=10, decimal_places=2) 
     def __str__(self):
-        return str(self.valor_min) + str(self.valor_max)
+        return f"Configuración ({self.tipo_cultivo} - {self.tipo_sensor}): Min {self.valor_min}, Max {self.valor_max}"

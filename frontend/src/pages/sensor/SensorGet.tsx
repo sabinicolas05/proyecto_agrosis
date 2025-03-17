@@ -37,7 +37,11 @@ const SensoresList = () => {
               <tr key={sensor.id} className="border-b">
 <td className="px-4 py-2">{sensor.fk_bancal_nombre || "N/A"}</td>
 <td className="px-4 py-2">{sensor.fk_tipo_sensor_nombre || "N/A"}</td>
-<td className="px-4 py-2">{sensor.fk_configuracion_nombre || "N/A"}</td>
+<td className="px-4 py-2">
+  {sensor.valor_min !== undefined && sensor.valor_max !== undefined
+    ? `Min: ${sensor.valor_min}, Max: ${sensor.valor_max}`
+    : "N/A"}
+</td>
 <td className="px-4 py-2">{sensor.fk_cultivo_nombre || "N/A"}</td>
                 <td className="px-4 py-2">{sensor.medicion}</td>
                 <td className="px-4 py-2 flex gap-2">
