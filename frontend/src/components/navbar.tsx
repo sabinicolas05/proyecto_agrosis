@@ -49,9 +49,32 @@ const menuItems = [
   },
   { id: 14, label: "Usuarios", path: "/usuarios", icon: <FaUser /> },
   { id: 15, label: "Mapa", path: "/mapa", icon: <FaMapMarkerAlt /> },
-  { id: 16, label: "Finanzas", path: "/finanzas", icon: <FaDollarSign /> },
-  { id: 17, label: "Plagas", path: "/plagas", icon: <FaBug /> },
-  { id: 18, label: "Inventario", path: "/inventario", icon: <FaBox /> },
+  { 
+    id: 16,
+    label: "Finanzas",
+    icon: <FaDollarSign />,
+    subItems: [
+      { id: 17, label: "Pagos", path: "/finanzas/pagos", icon: <FaSeedling /> },
+      { id: 18, label: "Produccion", path: "/finanzas/produccion", icon: <FaTachometerAlt /> },
+      { id: 19, label: "Residuos", path: "/finanzas/residuos", icon: <FaTree /> },
+      { id: 20, label: "Venta", path: "/finanzas/venta", icon: <FaTree /> },
+      
+    ],
+  },
+  { id: 21, label: "Plagas", path: "/plagas", icon: <FaBug /> },
+  { 
+    id: 22,
+    label: "Inventario",
+    icon: <FaBox />,
+    subItems: [
+      { id: 23, label: "Tipo Herramienta", path: "/inventario/tipoherramineta", icon: <FaSeedling /> },
+      { id: 24, label: "Herramienta", path: "/inventario/herramientas", icon: <FaTachometerAlt /> },
+      { id: 25, label: "Tipo Insumo", path: "/inventario/tipoinsumo", icon: <FaTree /> },
+      { id: 26, label: "Insumo", path: "/inventario/insumo", icon: <FaTree /> },
+      { id: 27, label: "Inventario", path: "/inventario/inventario", icon: <FaTree /> },
+      
+    ],
+   },
 ];
 
 import LogoSena from "../assets/def_AGROSIS_LOGOTIC.png";
