@@ -4,7 +4,7 @@
   import DefaultLayout from "@/layouts/default";
   import { Button } from "@heroui/react";
   import EditarEspecieModal from "@/pages/especie/EditarEspecie";
-  import RegisterEspecieModal from "@/pages/especie/RegisterEspecie";
+  import RegisterEspecieModal from "@/pages/herramientas/RegisterHerramineta";
   import useAuth from "@/hooks/useAuth";
 
   const EspeciesList = () => {
