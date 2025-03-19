@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from ..models.Herramienta import Herramienta
+from ..models.Tipo_Herramienta import Tipo_Herramienta  # ✅ Agregado
 
 class HerramientaSerializer(serializers.ModelSerializer):
-    fk_tipo_herramienta = serializers.PrimaryKeyRelatedField(queryset=Tipo_Herramienta.objects.all())  # Acepta solo un ID
+    fk_tipo_herramienta = serializers.PrimaryKeyRelatedField(queryset=Tipo_Herramienta.objects.all())
 
     class Meta:
         model = Herramienta
