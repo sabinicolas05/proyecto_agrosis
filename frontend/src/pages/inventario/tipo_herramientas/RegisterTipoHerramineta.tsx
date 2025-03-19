@@ -46,7 +46,7 @@ const RegisterTipoHerramientaModal= ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-6 shadow-md rounded-lg w-96">
-        <h2 className="text-lg font-bold mb-4">Registrar Bancal</h2>
+        <h2 className="text-lg font-bold mb-4">Registrar tipo de herramienta</h2>
         <form onSubmit={handleSubmit}>
           <label>tipo *</label>
           <Input type="text" name="tipo" value={formData.tipo} onChange={handleChange} required />

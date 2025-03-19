@@ -21,10 +21,14 @@ import UsuariosList from "./pages/user/UsersGet";
 import EditarUsuarioModal from "./pages/user/EditarUsuario";
 import RegisterUserModal from "./pages/user/registerModalUsers";
 import BancalesList from "./pages/bancal/BancalGet";
+{/* 🔹 INVENTARIO */}
 import HerramientasList from "./pages/inventario/herramientas/HerramientaGet";
 import TipoHerramientasList from "./pages/inventario/tipo_herramientas/TipoHerramientaGet";
 import TipoInsumosList from "./pages/inventario/tipo_insumo/TipoInsumoGet";
 import InsumosList from "./pages/inventario/insumo/InsumoGet";
+
+{/* 🔹 FINANZAS */}
+import PagoList from "./pages/finanzas/pago/PagoGet";
 
 
 function App() {
@@ -70,6 +74,8 @@ function App() {
           <Route element={<TipoInsumosList/>} path="/inventario/tipo_insumo" />
           <Route element={<InsumosList/>} path="/inventario/insumo" />
 
+           {/* 🔹 FINANZAS */}
+           <Route element={<PagoList/>} path="/finanzas/pagos" />
 
 
           <Route element={<UsuariosList />} path="/usuarios" />
