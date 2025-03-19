@@ -11,7 +11,7 @@ import useAuth from "@/hooks/useAuth";
 const HerramientasList = () => {
   useAuth();
   const { data: herramienta, error } = useFetchHerramienta();
-  const { mutate: deleteBancal } = useDeleteHerramienta();
+  const { mutate: deleteHerramienta } = useDeleteHerramienta();
   const [herramientaSeleccionado, setHerraminetaSeleccionado] = useState<string | null>(null);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [herraminetaAEliminar, setherramientaAEliminar] = useState<string | null>(null);
@@ -88,7 +88,7 @@ const HerramientasList = () => {
               <Button
                 className="bg-red-500 text-white px-4 py-2 rounded"
                 onClick={() => {
-                  deleteBancal (herraminetaAEliminar);
+                  deleteHerramienta (herraminetaAEliminar);
                   setherramientaAEliminar(null);
                 }}
               >
