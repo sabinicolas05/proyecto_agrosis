@@ -24,7 +24,7 @@ import BancalesList from "./pages/bancal/BancalGet";
 import HerramientasList from "./pages/herramientas/HerramientaGet";
 import TipoHerramientasList from "./pages/tipo_herramientas/TipoHerramientaGet";
 import TipoInsumosList from "./pages/tipo_insumo/TipoInsumoGet";
-
+import InsumosList from "./pages/insumo/InsumoGet";
 
 
 function App() {
@@ -68,6 +68,7 @@ function App() {
           <Route element={<HerramientasList/>} path="/inventario/herramientas" />
           <Route element={<TipoHerramientasList/>} path="/inventario/tipo_herramienta" />
           <Route element={<TipoInsumosList/>} path="/inventario/tipo_insumo" />
+          <Route element={<InsumosList/>} path="/inventario/insumo" />
 
 
 
