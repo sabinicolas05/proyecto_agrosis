@@ -67,9 +67,9 @@ const menuItems = [
     label: "Inventario",
     icon: <FaBox />,
     subItems: [
-      { id: 23, label: "Tipo Herramienta", path: "/inventario/tipoherramineta", icon: <FaSeedling /> },
+      { id: 23, label: "Tipo Herramienta", path: "/inventario/tipo_herramienta", icon: <FaSeedling /> },
       { id: 24, label: "Herramienta", path: "/inventario/herramientas", icon: <FaTachometerAlt /> },
-      { id: 25, label: "Tipo Insumo", path: "/inventario/tipoinsumo", icon: <FaTree /> },
+      { id: 25, label: "Tipo Insumo", path: "/inventario/tipo_insumo", icon: <FaTree /> },
       { id: 26, label: "Insumo", path: "/inventario/insumo", icon: <FaTree /> },
       { id: 27, label: "Inventario", path: "/inventario/inventario", icon: <FaTree /> },
       

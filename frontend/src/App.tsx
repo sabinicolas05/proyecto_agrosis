@@ -22,6 +22,7 @@ import EditarUsuarioModal from "./pages/user/EditarUsuario";
 import RegisterUserModal from "./pages/user/registerModalUsers";
 import BancalesList from "./pages/bancal/BancalGet";
 import HerramientasList from "./pages/herramientas/HerramientaGet";
+import TipoHerramientasList from "./pages/tipo_herramientas/TipoHerramientaGet";
 
 
 
@@ -62,7 +63,11 @@ function App() {
           <Route element={<CultivoForm />} path="/cultivo/cultivo" />
           <Route element={<BancalesList />} path="/cultivo/bancal" />
           <Route element={<ActividadForm />} path="/cultivo/actividades" />
+          {/* 🔹 INVENTARIO */}
           <Route element={<HerramientasList/>} path="/inventario/herramientas" />
+          <Route element={<TipoHerramientasList/>} path="/inventario/tipo_herramienta" />
+
+
           <Route element={<UsuariosList />} path="/usuarios" />
           <Route element={<EditarUsuarioModal />} path="/usuarios/editar/:id" />
           <Route element={<RegisterUserModal/>} path="/usuarios/editar/:id" />
