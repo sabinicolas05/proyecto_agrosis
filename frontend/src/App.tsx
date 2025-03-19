@@ -23,6 +23,7 @@ import RegisterUserModal from "./pages/user/registerModalUsers";
 import BancalesList from "./pages/bancal/BancalGet";
 import HerramientasList from "./pages/herramientas/HerramientaGet";
 import TipoHerramientasList from "./pages/tipo_herramientas/TipoHerramientaGet";
+import TipoInsumosList from "./pages/tipo_insumo/TipoInsumoGet";
 
 
 
@@ -66,6 +67,8 @@ function App() {
           {/* 🔹 INVENTARIO */}
           <Route element={<HerramientasList/>} path="/inventario/herramientas" />
           <Route element={<TipoHerramientasList/>} path="/inventario/tipo_herramienta" />
+          <Route element={<TipoInsumosList/>} path="/inventario/tipo_insumo" />
+
 
 
           <Route element={<UsuariosList />} path="/usuarios" />
