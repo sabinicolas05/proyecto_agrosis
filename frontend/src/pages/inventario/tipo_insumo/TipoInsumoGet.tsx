@@ -3,9 +3,10 @@ import { useFetchTipoInsumo } from "@/hooks/inventario/tipoinsumo/useFetchTipoIn
 import { useDeleteTipoInsumo } from "@/hooks/inventario/tipoinsumo/useDeleteTipoInsumo"; // Cambio aquí
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
-import EditarTipoInsumoModal from "@/pages/tipo_insumo/EditarTipoInsumo"; // Cambio aquí
-import RegisterTipoInsumoModal from "@/pages/tipo_insumo/RegisterTipoInsumo"; // Cambio aquí
+import EditarTipoInsumoModal from "@/pages/inventario/tipo_insumo/EditarTipoInsumo"; // Cambio aquí
+import RegisterTipoInsumoModal from "@/pages/inventario/tipo_insumo/RegisterTipoInsumo"; // Cambio aquí
 import useAuth from "@/hooks/useAuth";
+
 
 const TipoInsumosList = () => { // Cambio aquí
   useAuth();

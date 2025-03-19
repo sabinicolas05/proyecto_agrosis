@@ -5,45 +5,52 @@ import useAuth from "@/hooks/useAuth";
 import { Button, Input } from "@heroui/react";
 import { toast } from "react-toastify";
 
-const EditarTipoHerramientaModal = ({ id, onClose }) => {
+// Define los tipos de las props para el componente EditarTipoHerramientaModal
+interface EditarTipoHerramientaModalProps {
+  id: string; // Suponiendo que 'id' es un string
+  onClose: () => void; // 'onClose' es una función que no recibe parámetros y no retorna nada
+}
+
+const EditarTipoHerramientaModal = ({ id, onClose }: EditarTipoHerramientaModalProps) => {
   useAuth();
+
+  // Aquí isLoading debería estar bien tipado ya que useFetchTipoHerramientaById devuelve un objeto con 'isLoading'
   const { data: tipoherramienta, isLoading } = useFetchTipoHerramientaById(id);
   const { mutate: updateTipoHerramienta, isLoading: isUpdating } = useUpdateTipoHerramienta();
 
   const [formData, setFormData] = useState({
-    tipo:"",
+    tipo: "",
   });
 
   useEffect(() => {
     if (tipoherramienta && !isLoading) {
       setFormData({
         tipo: tipoherramienta.tipo ?? "",
-       
       });
-          
-      }
+    }
+  }, [tipoherramienta, isLoading]);
 
-    }, [tipoherramienta, isLoading]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;9
-    setFormData((prev) => ({ ...prev, [name]: value}));
+  // Tipo de evento Change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  const handleUpdate = async (e) => {
+
+  const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.tipo ) {
+    if (!formData.tipo) {
       toast.error("Todos los campos son obligatorios.");
       return;
     }
 
     updateTipoHerramienta({ id, ...formData }, {
       onSuccess: () => {
-        toast.success("✅ tipo de Herramienta actualizada correctamente");
+        toast.success("✅ Tipo de herramienta actualizada correctamente");
         onClose();
       },
       onError: (error) => {
         console.error("❌ Error al actualizar el tipo de herramienta:", error);
-        toast.error("❌ Error al actualizarel tipo de  herramienta");
+        toast.error("❌ Error al actualizar el tipo de herramienta");
       },
     });
   };
@@ -57,14 +64,28 @@ const EditarTipoHerramientaModal = ({ id, onClose }) => {
           <p className="text-center text-gray-500">Cargando tipo de herramienta...</p>
         ) : (
           <form onSubmit={handleUpdate}>
-            <label>tipo *</label>
-            <Input type="text" name="tipo" value={formData.tipo} onChange={handleChange} required />
+            <label>Tipo *</label>
+            <Input
+              type="text"
+              name="tipo"
+              value={formData.tipo}
+              onChange={handleChange}
+              required
+            />
 
             <div className="flex justify-end gap-2 mt-4">
-              <Button type="button" className="bg-gray-400 text-white px-4 py-2 rounded" onClick={onClose}>
+              <Button
+                type="button"
+                className="bg-gray-400 text-white px-4 py-2 rounded"
+                onClick={onClose}
+              >
                 Cancelar
               </Button>
-              <Button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded" disabled={isUpdating}>
+              <Button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+                disabled={isUpdating}
+              >
                 {isUpdating ? "Guardando..." : "Guardar"}
               </Button>
             </div>
@@ -74,6 +95,5 @@ const EditarTipoHerramientaModal = ({ id, onClose }) => {
     </div>
   );
 };
-
 
 export default EditarTipoHerramientaModal;

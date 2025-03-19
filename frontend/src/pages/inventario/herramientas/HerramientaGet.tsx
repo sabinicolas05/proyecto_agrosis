@@ -3,8 +3,8 @@ import { useFetchHerramienta } from "@/hooks/inventario/herramienta/useFetchHerr
 import { useDeleteHerramienta } from "@/hooks/inventario/herramienta/useDeleteHerramienta";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
-import  EditarHerramientaModal from "@/pages/herramientas/EditarHerramienta";
-import RegisterHerramientaModal from "@/pages/herramientas/RegisterHerramineta";
+import  EditarHerramientaModal from "@/pages/inventario/herramientas/EditarHerramienta";
+import RegisterHerramientaModal from "@/pages/inventario/herramientas/RegisterHerramineta";
 import useAuth from "@/hooks/useAuth";
 
 

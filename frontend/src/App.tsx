@@ -21,10 +21,10 @@ import UsuariosList from "./pages/user/UsersGet";
 import EditarUsuarioModal from "./pages/user/EditarUsuario";
 import RegisterUserModal from "./pages/user/registerModalUsers";
 import BancalesList from "./pages/bancal/BancalGet";
-import HerramientasList from "./pages/herramientas/HerramientaGet";
-import TipoHerramientasList from "./pages/tipo_herramientas/TipoHerramientaGet";
-import TipoInsumosList from "./pages/tipo_insumo/TipoInsumoGet";
-import InsumosList from "./pages/insumo/InsumoGet";
+import HerramientasList from "./pages/inventario/herramientas/HerramientaGet";
+import TipoHerramientasList from "./pages/inventario/tipo_herramientas/TipoHerramientaGet";
+import TipoInsumosList from "./pages/inventario/tipo_insumo/TipoInsumoGet";
+import InsumosList from "./pages/inventario/insumo/InsumoGet";
 
 
 function App() {

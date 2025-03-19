@@ -3,8 +3,8 @@ import { useFetchInsumo } from "@/hooks/inventario/insumos/useFetchInsumo";
 import { useDeleteInsumo } from "@/hooks/inventario/insumos/useDeleteInsumo";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
-import EditarInsumoModal from "@/pages/insumo/EditarInsumo";
-import RegisterInsumoModal from "@/pages/insumo/RegisterInsumo";
+import EditarInsumoModal from "@/pages/inventario/insumo/EditarInsumo";
+import RegisterInsumoModal from "@/pages/inventario/insumo/RegisterInsumo";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-toastify";
 

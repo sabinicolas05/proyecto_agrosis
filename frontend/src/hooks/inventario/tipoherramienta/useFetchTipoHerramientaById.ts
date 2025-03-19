@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-// Función para obtener un bancal por su ID
+// Función para obtener un tipo de herramienta por su ID
 const fetchTipoHerramientaById = async (id: string) => {
   const token = localStorage.getItem("token"); // Obtiene el token almacenado
   console.log("Token usado en la petición:", token);
@@ -18,10 +18,8 @@ const fetchTipoHerramientaById = async (id: string) => {
 
 export const useFetchTipoHerramientaById = (id: string) => {
   return useQuery({
-    queryKey: ["bancal", id],
+    queryKey: ["tipoHerramienta", id], // Se cambia "bancal" por "tipoHerramienta"
     queryFn: () => fetchTipoHerramientaById(id),
-    enabled: !!id, // Solo ejecuta la petición si hay un ID
+    enabled: !!id, // Solo ejecuta la petición si hay un ID válido
   });
 };
-
-// Importado en src/pages/EditarBancal.tsx
