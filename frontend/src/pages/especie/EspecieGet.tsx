@@ -37,7 +37,7 @@
                 <tr key={especie.id} className="border-b">
                   <td className="px-4 py-2">{especie.id}</td>
                   <td className="px-4 py-2">{especie.nombre}</td>
-                  <td>{especie.tipo_especie || "Sin tipo"}</td>
+                  <td>{especie.fk_tipo_especie_nombre || "Sin tipo"}</td>
                   <td className="px-4 py-2 flex gap-2">
                     <Button
                       onClick={() => setEspecieSeleccionada(especie.id)}
