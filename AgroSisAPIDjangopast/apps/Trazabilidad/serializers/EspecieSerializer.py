@@ -1,7 +1,7 @@
-from rest_framework.serializers import ModelSerializer, serializers
+from rest_framework import serializers
 from ..models.Especie import Especie
 
-class EspecieSerializer(ModelSerializer):
+class EspecieSerializer(serializers.ModelSerializer):
     fk_tipo_especie_nombre = serializers.CharField(source="fk_tipo_especie.tipo", read_only=True)
     
     class Meta:
