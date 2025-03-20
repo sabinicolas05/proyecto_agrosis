@@ -22,5 +22,7 @@ export const useFetchTipoEspecie = () => {
   return useQuery({
     queryKey: ["tipos-especie"],
     queryFn: fetchTipoEspecie,
+    staleTime: 1000, // Se vuelve "viejo" en 1s
+    refetchInterval: 5000, // Hace refetch cada 5s automáticamente
   });
 };
