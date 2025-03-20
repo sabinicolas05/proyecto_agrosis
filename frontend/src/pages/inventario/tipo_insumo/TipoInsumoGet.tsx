@@ -27,6 +27,7 @@ const TipoInsumosList = () => { // Cambio aquí
             <tr>
               <th className="px-4 py-2">ID</th>
               <th className="px-4 py-2">Tipo</th> {/* Cambio aquí */}
+              <th className="px-4 py-2">Acciones</th>
             </tr>
           </thead>
           <tbody>
