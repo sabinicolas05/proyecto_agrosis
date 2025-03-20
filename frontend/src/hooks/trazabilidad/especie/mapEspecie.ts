@@ -19,8 +19,11 @@ const useFetchTipoEspecieMap = () => {
         const response = await axios.get("http://127.0.0.1:8000/api/tipo_especie/", { headers });
 
         // Extrae solo el atributo `tipo`
-        setTiposEspecie(response.data.map((item: { tipo: string }) => item.tipo));
-      } catch (err) {
+        setTiposEspecie(response.data.map((item: { id: number; tipo: string }) => ({
+            id: item.id,
+            tipo: item.tipo
+          })));
+                } catch (err) {
         setError(err as Error);
         console.error("❌ Error al obtener los tipos de especie:", err);
       } finally {
