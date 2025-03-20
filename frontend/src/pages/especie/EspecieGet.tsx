@@ -18,6 +18,7 @@
     if (error) return <p>Error al cargar las especies</p>;
 
     return (
+      
       <DefaultLayout>
         <div className="overflow-x-auto">
           <h2 className="text-lg font-bold mb-4">Especies Registradas</h2>
@@ -31,6 +32,7 @@
               </tr>
             </thead>
             <tbody>
+
               {especies?.map((especie) => (
                 <tr key={especie.id} className="border-b">
                   <td className="px-4 py-2">{especie.id}</td>

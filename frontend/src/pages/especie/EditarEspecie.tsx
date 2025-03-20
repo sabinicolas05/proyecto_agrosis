@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import { useFetchEspecieById } from "@/hooks/trazabilidad/especie/useFetchEspecieById";
 import { useUpdateEspecie } from "@/hooks/trazabilidad/especie/useUpdateEspecie";
-import { useFetchEspecie } from "@/hooks/trazabilidad/especie/useFetchEspecie";
+import useFetchTipoEspecieMap from "@/hooks/trazabilidad/especie/mapEspecie";
 import useAuth from "@/hooks/useAuth";
-import { Button, Input, Select } from "@heroui/react";
+import { Button, Input } from "@heroui/react";
 import { toast } from "react-toastify";
 
 const EditarEspecieModal = ({ id, onClose }) => {
   useAuth();
 
-  // Obtener datos de la especie y lista de tipos de especies
   const { data: especie, isLoading } = useFetchEspecieById(id);
-  const { data: tiposEspecies } = useFetchEspecie();
+  const { tiposEspecie, loading: loadingTipos } = useFetchTipoEspecieMap();
   const { mutate: updateEspecie, isLoading: isUpdating } = useUpdateEspecie();
 
   const [formData, setFormData] = useState({
@@ -22,7 +21,7 @@ const EditarEspecieModal = ({ id, onClose }) => {
   useEffect(() => {
     if (especie && !isLoading) {
       setFormData({
-        fk_tipo_especie: especie.fk_tipo_especie?.id ?? "",
+        fk_tipo_especie: especie.fk_tipo_especie ?? "",
         nombre: especie.nombre ?? "",
       });
     }
@@ -37,7 +36,7 @@ const EditarEspecieModal = ({ id, onClose }) => {
     e.preventDefault();
 
     if (!formData.fk_tipo_especie || !formData.nombre) {
-      toast.error("Todos los campos son obligatorios.");
+      toast.error("Los campos con * son obligatorios.");
       return;
     }
 
@@ -57,20 +56,24 @@ const EditarEspecieModal = ({ id, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-6 shadow-md rounded-lg w-96">
         <h2 className="text-lg font-bold mb-4">Editar Especie</h2>
-
-        {isLoading ? (
+        {isLoading || loadingTipos ? (
           <p className="text-center text-gray-500">Cargando datos...</p>
         ) : (
           <form onSubmit={handleSubmit}>
             <label>Tipo de Especie *</label>
-            <Select name="fk_tipo_especie" value={formData.fk_tipo_especie} onChange={handleChange} required>
-              <option value="">Seleccione un tipo</option>
-              {tiposEspecies?.map((tipo) => (
+            <select
+              name="fk_tipo_especie"
+              value={formData.fk_tipo_especie}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Seleccione un tipo de especie</option>
+              {tiposEspecie.map((tipo) => (
                 <option key={tipo.id} value={tipo.id}>
                   {tipo.tipo}
                 </option>
               ))}
-            </Select>
+            </select>
 
             <label>Nombre *</label>
             <Input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
@@ -79,7 +82,7 @@ const EditarEspecieModal = ({ id, onClose }) => {
               <Button type="button" className="bg-gray-400 text-white px-4 py-2 rounded" onClick={onClose}>
                 Cancelar
               </Button>
-              <Button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded" disabled={isUpdating}>
+              <Button type="submit" disabled={isUpdating} className="bg-blue-500 text-white px-4 py-2 rounded">
                 {isUpdating ? "Guardando..." : "Guardar"}
               </Button>
             </div>

@@ -14,6 +14,7 @@ const RegisterEspecieModal = ({ onClose }) => {
     fk_tipo_especie: "",
     nombre: "",
   });
+  console.log("🟢 tiposEspecie:", tiposEspecie); // <-- Aquí
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,11 +59,11 @@ const RegisterEspecieModal = ({ onClose }) => {
             required
           >
             <option value="">Seleccione un tipo de especie</option>
-            {tiposEspecie.map((tipo, index) => (
-              <option key={index} value={tipo}>
-                {tipo}
-              </option>
-            ))}
+            {tiposEspecie.map((tipo) => (
+  <option key={tipo.id} value={tipo.id}>
+    {tipo.tipo}
+  </option>
+))}
           </select>
 
           <label>Nombre *</label>
