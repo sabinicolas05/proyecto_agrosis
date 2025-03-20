@@ -10,7 +10,7 @@ interface Cultivo {
   fecha_siembra: string;
 }
 
-const postCultivo = async (nuevoCultivo: Cultivo) => {
+const CreateCultivo = async (nuevoCultivo: Cultivo) => {
   const token = localStorage.getItem("token");
 
   const response = await fetch("http://127.0.0.1:8000/api/cultivo/", {
@@ -29,9 +29,9 @@ const postCultivo = async (nuevoCultivo: Cultivo) => {
   return response.json();
 };
 
-export const usePostCultivo = () => {
+export const useCreateCultivo = () => {
   return useMutation({
-    mutationFn: postCultivo,
+    mutationFn: CreateCultivo,
     onSuccess: (data) => {
       toast.success(`✅ Cultivo "${data.nombre}" registrado`);
     },

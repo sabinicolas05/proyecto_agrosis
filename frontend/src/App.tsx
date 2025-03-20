@@ -13,7 +13,7 @@ import TipoEspecieForm   from "./pages/tipo_especie/tipo_especie_Get";
 import EspecieForm from "./pages/especie/EspecieGet";
 import LoteForm from "./pages/lote/LoteGet";
 import SemilleroForm from "./pages/semillero/SemilleroForm";
-import CultivoForm from "./pages/trazabilidad/CultivoForm";
+import CultivoForm from "./pages/trazabilidad/cultivo/CultivoGet";
 import ActividadForm from "./pages/actividad/ActividadForm";
 import SensorForm from "./pages/sensor/SensorGet";
 import TipoSensoresList from "./pages/sensor/tipo_sensor/TipoSensorGet";
