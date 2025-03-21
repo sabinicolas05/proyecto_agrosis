@@ -12,30 +12,23 @@ const RegisterHerramientaModal = ({ onClose }) => {
     nombre: "",
     unidades: "",
     precioCU: "",
-    estado: "", // Ahora es un campo de texto
+    estado: false, // Ahora es un checkbox (booleano)
     fk_tipo_herramienta: "",
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, type, value, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.nombre || !formData.unidades || !formData.precioCU || !formData.fk_tipo_herramienta || formData.estado === "") {
+    if (!formData.nombre || !formData.unidades || !formData.precioCU || !formData.fk_tipo_herramienta) {
       toast.error("Los campos con * son obligatorios.");
-      return;
-    }
-
-    // Validación del estado
-    const estadoValue = formData.estado.toLowerCase();
-    if (estadoValue !== "true" && estadoValue !== "false") {
-      toast.error("El estado debe ser 'true' o 'false'.");
       return;
     }
 
@@ -44,7 +37,6 @@ const RegisterHerramientaModal = ({ onClose }) => {
       unidades: Number(formData.unidades),
       precioCU: Number(formData.precioCU),
       fk_tipo_herramienta: Number(formData.fk_tipo_herramienta),
-      estado: estadoValue === "true", // Convertir a booleano
     };
 
     console.log("📤 Enviando datos al backend:", formattedData);
@@ -79,9 +71,10 @@ const RegisterHerramientaModal = ({ onClose }) => {
           <label>Precio Unitario *</label>
           <Input type="number" step="0.01" name="precioCU" value={formData.precioCU} onChange={handleChange} required />
 
-          <label>Estado (true / false) *</label>
-          <Input type="text" name="estado" value={formData.estado} onChange={handleChange} required />
-
+          <label>
+            <input type="checkbox" name="estado" checked={formData.estado} onChange={handleChange} /> Activo
+          </label>
+          <br />
           <label>Tipo de Herramienta *</label>
           <Input type="number" name="fk_tipo_herramienta" value={formData.fk_tipo_herramienta} onChange={handleChange} required />
 
