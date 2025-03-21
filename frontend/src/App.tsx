@@ -31,6 +31,7 @@ import InsumosList from "./pages/inventario/insumo/InsumoGet";
 import PagoList from "./pages/finanzas/pago/PagoGet";
 import ProduccionList from "./pages/finanzas/produccion/ProduccionGet";
 import ResiduosList from "./pages/finanzas/residuo/ResiduoGet";
+import VentasList from "./pages/finanzas/ventas/VentasGet";
 
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
            <Route element={<PagoList/>} path="/finanzas/pagos" />
            <Route element={<ProduccionList/>} path="/finanzas/produccion" />
            <Route element={<ResiduosList/>} path="/finanzas/residuos" />
+           <Route element={<VentasList/>} path="/finanzas/venta" />
 
 
           <Route element={<UsuariosList />} path="/usuarios" />
