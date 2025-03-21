@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useFetchSemilleros } from "@/hooks/trazabilidad/semillero/useFetchSemillero";
 import { useDeleteSemillero } from "@/hooks/trazabilidad/semillero/useDeleteSemillero";
+import useFetchSemilleroOptions from "@/hooks/trazabilidad/semillero/Map.semillero";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
 import EditarSemilleroModal from "@/pages/semillero/EditarSemillero";
@@ -10,6 +11,7 @@ import useAuth from "@/hooks/useAuth";
 const SemillerosList = () => {
   useAuth();
   const { data: semilleros, error } = useFetchSemilleros();
+  const { especies, lotes } = useFetchSemilleroOptions(); // Importamos las especies y lotes
   const { mutate: deleteSemillero } = useDeleteSemillero();
   const [semilleroSeleccionado, setSemilleroSeleccionado] = useState<string | null>(null);
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -34,30 +36,35 @@ const SemillerosList = () => {
             </tr>
           </thead>
           <tbody>
-            {semilleros?.map((semillero) => (
-              <tr key={semillero.id} className="border-b">
-                <td className="px-4 py-2">{semillero.nombre_semilla}</td>
-                <td className="px-4 py-2">{semillero.nombre_especie || "N/A"}</td>
-                <td className="px-4 py-2">{semillero.nombre_lote || "N/A"}</td>
-                <td className="px-4 py-2">{semillero.fecha_siembra}</td>
-                <td className="px-4 py-2">{semillero.fecha_estimada}</td>
-                <td className="px-4 py-2">{semillero.unidades}</td>
-                <td className="px-4 py-2 flex gap-2">
-                  <Button
-                    onClick={() => setSemilleroSeleccionado(semillero.id)}
-                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-                  >
-                    Editar
-                  </Button>
-                  <Button
-                    onClick={() => setSemilleroAEliminar(semillero.id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                  >
-                    Eliminar
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            {semilleros?.map((semillero) => {
+              const especie = especies.find((e) => e.id === semillero.fk_especie);
+              const lote = lotes.find((l) => l.id === semillero.fk_lote);
+
+              return (
+                <tr key={semillero.id} className="border-b">
+                  <td className="px-4 py-2">{semillero.nombre_semilla}</td>
+                  <td className="px-4 py-2">{especie?.nombre || "N/A"}</td>
+                  <td className="px-4 py-2">{lote?.nombre || "N/A"}</td>
+                  <td className="px-4 py-2">{semillero.fecha_siembra}</td>
+                  <td className="px-4 py-2">{semillero.fecha_estimada}</td>
+                  <td className="px-4 py-2">{semillero.unidades}</td>
+                  <td className="px-4 py-2 flex gap-2">
+                    <Button
+                      onClick={() => setSemilleroSeleccionado(semillero.id)}
+                      className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      onClick={() => setSemilleroAEliminar(semillero.id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                    >
+                      Eliminar
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
