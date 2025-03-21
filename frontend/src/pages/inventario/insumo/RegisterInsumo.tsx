@@ -50,7 +50,7 @@ const RegisterInsumoModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-6 shadow-md rounded-lg w-96">
-        <h2 className="text-lg font-bold mb-4">📦 Registrar Insumo</h2>
+        <h2 className="text-lg font-bold mb-4"> Registrar Insumo</h2>
         <form onSubmit={handleSubmit} className="space-y-2">
           <label>Cantidad *</label>
           <Input type="number" name="cantidad" value={formData.cantidad} onChange={handleChange} required />
@@ -69,10 +69,10 @@ const RegisterInsumoModal = ({ onClose }) => {
 
           <div className="flex justify-end gap-2 mt-4">
             <Button type="button" className="bg-gray-400 text-white px-4 py-2 rounded" onClick={onClose}>
-              ❌ Cancelar
+               Cancelar
             </Button>
             <Button type="submit" disabled={isLoading} className="bg-blue-500 text-white px-4 py-2 rounded">
-              {isLoading ? "Registrando..." : "✅ Guardar"}
+              {isLoading ? "Registrando..." : " Guardar"}
             </Button>
           </div>
         </form>
