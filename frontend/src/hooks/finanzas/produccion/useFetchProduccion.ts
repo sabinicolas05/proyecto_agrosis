@@ -24,5 +24,8 @@ export const useFetchProduccion = () => {
   return useQuery({
     queryKey: ["producciones"],
     queryFn: fetchProduccion,
+    staleTime: 5000, 
+    refetchInterval: 5000, 
+
   });
 };

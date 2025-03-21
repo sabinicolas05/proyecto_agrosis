@@ -29,7 +29,6 @@ import HerramientasList from "./pages/inventario/herramientas/HerramientaGet";
 import TipoHerramientasList from "./pages/inventario/tipo_herramientas/TipoHerramientaGet";
 import TipoInsumosList from "./pages/inventario/tipo_insumo/TipoInsumoGet";
 import InsumosList from "./pages/inventario/insumo/InsumoGet";
-
 {/*  FINANZAS */}
 import PagoList from "./pages/finanzas/pago/PagoGet";
 import ProduccionList from "./pages/finanzas/produccion/ProduccionGet";

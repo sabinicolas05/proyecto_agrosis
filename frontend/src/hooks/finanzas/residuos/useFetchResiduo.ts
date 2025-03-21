@@ -28,5 +28,8 @@ export const useFetchResiduos = () => {
   return useQuery({
     queryKey: ["residuos"],
     queryFn: fetchResiduos,
+    staleTime: 5000, 
+    refetchInterval: 5000, 
+
   });
 };
