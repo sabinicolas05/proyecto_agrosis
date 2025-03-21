@@ -1,106 +1,94 @@
-import { useState } from "react";
-import { useFetchHerramienta } from "@/hooks/inventario/herramienta/useFetchHerramienta";
-import { useDeleteHerramienta } from "@/hooks/inventario/herramienta/useDeleteHerramienta";
-import DefaultLayout from "@/layouts/default";
-import { Button, Checkbox } from "@heroui/react";
-import EditarHerramientaModal from "@/pages/inventario/herramientas/EditarHerramienta";
-import RegisterHerramientaModal from "@/pages/inventario/herramientas/RegisterHerramineta";
+import { useState, useEffect } from "react";
+import { useFetchHerramientaById } from "@/hooks/inventario/herramienta/useFetchHerramientaById";
+import { useUpdateHerramienta } from "@/hooks/inventario/herramienta/useUpdateHerramienta";
 import useAuth from "@/hooks/useAuth";
+import { Button, Input } from "@heroui/react";
+import { toast } from "react-toastify";
 
-const HerramientasList = () => {
+const EditarHerramientaModal = ({ id, onClose }) => {
   useAuth();
-  const { data: herramienta, error } = useFetchHerramienta();
-  const { mutate: deleteHerramienta } = useDeleteHerramienta();
-  const [herramientaSeleccionado, setHerraminetaSeleccionado] = useState<string | null>(null);
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [herraminetaAEliminar, setherramientaAEliminar] = useState<string | null>(null);
+  const { data: herramienta, isLoading } = useFetchHerramientaById(id);
+  const { mutate: updateHerramienta, isLoading: isUpdating } = useUpdateHerramienta();
 
-  if (error) return <p>Error al cargar las herraminetas</p>;
+  const [formData, setFormData] = useState({
+    nombre:"",
+    unidades: "",
+    precioCU: "",
+    estado: "",
+  });
+
+  useEffect(() => {
+    if (herramienta && !isLoading) {
+      setFormData({
+        nombre: herramienta.nombre ?? "",
+        unidades: herramienta.unidades ?? "",
+        precioCU: herramienta.precioCU ?? "",
+        estado: herramienta.estado ?? "",
+      });
+          
+      }
+
+    }, [herramienta, isLoading]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;9
+    setFormData((prev) => ({ ...prev, [name]: value}));
+  };
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    if (!formData.nombre || !formData.unidades || !formData.precioCU || !formData.estado) {
+      toast.error("Todos los campos son obligatorios.");
+      return;
+    }
+
+    updateHerramienta({ id, ...formData }, {
+      onSuccess: () => {
+        toast.success("✅ Herramienta actualizada correctamente");
+        onClose();
+      },
+      onError: (error) => {
+        console.error("❌ Error al actualizar herramienta:", error);
+        toast.error("❌ Error al actualizar herramienta");
+      },
+    });
+  };
 
   return (
-    <DefaultLayout>
-      <div className="overflow-x-auto">
-        <h2 className="text-lg font-bold mb-4">Herraminetas Registradas</h2>
-        <table className="min-w-full bg-white border border-gray-300 shadow-md">
-          <thead className="bg-gray-800 text-white">
-            <tr>
-              <th className="px-4 py-2">ID</th>
-              <th className="px-4 py-2">Nombre</th>
-              <th className="px-4 py-2">Unidades</th>
-              <th className="px-4 py-2">Precio CU</th>
-              <th className="px-4 py-2">Estado</th>
-              <th className="px-4 py-2">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {herramienta?.map((herramientas) => (
-              <tr key={herramientas.id} className="border-b">
-                <td className="px-4 py-2">{herramientas.id}</td>
-                <td className="px-4 py-2">{herramientas.nombre}</td>
-                <td className="px-4 py-2">{herramientas.unidades}</td>
-                <td className="px-4 py-2">{herramientas.precioCU}</td>
-                <td className="px-4 py-2">
-                  <Checkbox id={`estado-${herramientas.id}`} checked={herramientas.estado} disabled />
-                </td>
-                <td className="px-4 py-2 flex gap-2">
-                  <Button
-                    onClick={() => setHerraminetaSeleccionado(herramientas.id)}
-                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-                  >
-                    Editar
-                  </Button>
-                  <Button
-                    onClick={() => setherramientaAEliminar(herramientas.id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                  >
-                    Eliminar
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+      <div className="bg-white p-6 shadow-md rounded-lg w-96">
+        <h2 className="text-lg font-bold mb-4">Editar herramienta</h2>
 
-      <br />
+        {isLoading ? (
+          <p className="text-center text-gray-500">Cargando herramienta...</p>
+        ) : (
+          <form onSubmit={handleUpdate}>
+            <label>Nombre *</label>
+            <Input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
 
-      <Button
-        onClick={() => setMostrarModal(true)}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        Registrar una herramienta
-      </Button>
+            <label> unidades *</label>
+            <Input type="number" name="unidades" value={formData.unidades} onChange={handleChange} required />
 
-      {mostrarModal && <RegisterHerramientaModal onClose={() => setMostrarModal(false)} />}
+            <label>precioCU *</label>
+            <Input type="number" name="precioCU" value={formData.precioCU} onChange={handleChange} required />
 
-      {herramientaSeleccionado && (
-        <EditarHerramientaModal id={herramientaSeleccionado} onClose={() => setHerraminetaSeleccionado(null)} />
-      )}
+            <label>estado *</label>
+            <Input type="text" name="estado" value={formData.estado} onChange={handleChange} required />
 
-      {herraminetaAEliminar && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 shadow-md rounded-lg w-96">
-            <h2 className="text-lg font-bold mb-4">¿Eliminar herramienta?</h2>
-            <p className="mb-4">Esta acción no se puede deshacer.</p>
-            <div className="flex justify-end gap-2">
-              <Button className="bg-gray-400 text-white px-4 py-2 rounded" onClick={() => setherramientaAEliminar(null)}>
+
+            <div className="flex justify-end gap-2 mt-4">
+              <Button type="button" className="bg-gray-400 text-white px-4 py-2 rounded" onClick={onClose}>
                 Cancelar
               </Button>
-              <Button
-                className="bg-red-500 text-white px-4 py-2 rounded"
-                onClick={() => {
-                  deleteHerramienta (herraminetaAEliminar);
-                  setherramientaAEliminar(null);
-                }}
-              >
-                Eliminar
+              <Button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded" disabled={isUpdating}>
+                {isUpdating ? "Guardando..." : "Guardar"}
               </Button>
             </div>
-          </div>
-        </div>
-      )}
-    </DefaultLayout>
+          </form>
+        )}
+      </div>
+    </div>
   );
 };
 
-export default HerramientasList;
+
+export default EditarHerramientaModal;
