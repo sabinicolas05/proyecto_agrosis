@@ -22,5 +22,6 @@ export const useFetchHerramienta = () => {
   return useQuery({
     queryKey: ["herramientas"],
     queryFn: fetchHerramienta,
+    refetchInterval: 5000, 
   });
 };
