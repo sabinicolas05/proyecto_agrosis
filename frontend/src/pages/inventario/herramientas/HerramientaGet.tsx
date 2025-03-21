@@ -3,10 +3,9 @@ import { useFetchHerramienta } from "@/hooks/inventario/herramienta/useFetchHerr
 import { useDeleteHerramienta } from "@/hooks/inventario/herramienta/useDeleteHerramienta";
 import DefaultLayout from "@/layouts/default";
 import { Button } from "@heroui/react";
-import  EditarHerramientaModal from "@/pages/inventario/herramientas/EditarHerramienta";
+import EditarHerramientaModal from "@/pages/inventario/herramientas/EditarHerramienta";
 import RegisterHerramientaModal from "@/pages/inventario/herramientas/RegisterHerramineta";
 import useAuth from "@/hooks/useAuth";
-
 
 const HerramientasList = () => {
   useAuth();
@@ -16,20 +15,20 @@ const HerramientasList = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [herraminetaAEliminar, setherramientaAEliminar] = useState<string | null>(null);
 
-  if (error) return <p>Error al cargar las herraminetas</p>;
+  if (error) return <p>Error al cargar las herramientas</p>;
 
   return (
     <DefaultLayout>
       <div className="overflow-x-auto">
-        <h2 className="text-lg font-bold mb-4">Herraminetas Registradas</h2>
+        <h2 className="text-lg font-bold mb-4">Herramientas Registradas</h2>
         <table className="min-w-full bg-white border border-gray-300 shadow-md">
           <thead className="bg-gray-800 text-white">
             <tr>
               <th className="px-4 py-2">ID</th>
               <th className="px-4 py-2">Nombre</th>
-              <th className="px-4 py-2">unidades</th>
-              <th className="px-4 py-2">precioCU</th>
-              <th className="px-4 py-2">estado</th>
+              <th className="px-4 py-2">Unidades</th>
+              <th className="px-4 py-2">Precio CU</th>
+              <th className="px-4 py-2">Estado</th>
               <th className="px-4 py-2">Acciones</th>
             </tr>
           </thead>
@@ -40,7 +39,14 @@ const HerramientasList = () => {
                 <td className="px-4 py-2">{herramientas.nombre}</td>
                 <td className="px-4 py-2">{herramientas.unidades}</td>
                 <td className="px-4 py-2">{herramientas.precioCU}</td>
-                <td className="px-4 py-2">{herramientas.estado}</td>
+                <td className="px-4 py-2 text-center">
+                  <input
+                    type="checkbox"
+                    checked={herramientas.estado}
+                    disabled
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                  />
+                </td>
                 <td className="px-4 py-2 flex gap-2">
                   <Button
                     onClick={() => setHerraminetaSeleccionado(herramientas.id)}
@@ -88,7 +94,7 @@ const HerramientasList = () => {
               <Button
                 className="bg-red-500 text-white px-4 py-2 rounded"
                 onClick={() => {
-                  deleteHerramienta (herraminetaAEliminar);
+                  deleteHerramienta(herraminetaAEliminar);
                   setherramientaAEliminar(null);
                 }}
               >
