@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 #Recuperacion de contraseña
-from .views import PasswordResetRequestView, PasswordResetConfirmView
+from apps.autenticacion.views import PasswordResetRequestView, PasswordResetConfirmView
 
 #Importaciones JWT
 from rest_framework_simplejwt.views import (
