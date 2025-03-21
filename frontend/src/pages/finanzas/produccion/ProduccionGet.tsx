@@ -25,7 +25,7 @@ const ProduccionList = () => {
   return (
     <DefaultLayout>
       <div className="overflow-x-auto">
-        <h2 className="text-lg font-bold mb-4">🏭 Producciones Registradas</h2>
+        <h2 className="text-lg font-bold mb-4"> Producciones Registradas</h2>
 
         {isLoading ? (
           <p className="text-gray-500">Cargando producciones...</p>
@@ -54,13 +54,13 @@ const ProduccionList = () => {
                       onClick={() => setProduccionSeleccionada(produccion.id)}
                       className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
                     >
-                      ✏️ Editar
+                       Editar
                     </Button>
                     <Button
                       onClick={() => setProduccionAEliminar(produccion.id)}
                       className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
                     >
-                      🗑️ Eliminar
+                       Eliminar
                     </Button>
                   </td>
                 </tr>
@@ -77,7 +77,7 @@ const ProduccionList = () => {
         onClick={() => setMostrarModal(true)}
         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
       >
-        ➕ Registrar una producción
+         Registrar una producción
       </Button>
 
       {/* Modal de registro */}
@@ -92,14 +92,14 @@ const ProduccionList = () => {
       {produccionAEliminar && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 shadow-md rounded-lg w-96">
-            <h2 className="text-lg font-bold mb-4">❌ ¿Eliminar producción?</h2>
+            <h2 className="text-lg font-bold mb-4"> ¿Eliminar producción?</h2>
             <p className="mb-4">Esta acción no se puede deshacer.</p>
             <div className="flex justify-end gap-2">
               <Button
                 className="bg-gray-400 text-white px-4 py-2 rounded"
                 onClick={() => setProduccionAEliminar(null)}
               >
-                ❌ Cancelar
+                 Cancelar
               </Button>
               <Button
                 className="bg-red-500 text-white px-4 py-2 rounded"
@@ -111,7 +111,7 @@ const ProduccionList = () => {
                   setProduccionAEliminar(null);
                 }}
               >
-                ✅ Eliminar
+                 Eliminar
               </Button>
             </div>
           </div>
