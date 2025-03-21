@@ -17,7 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 #Recuperacion de contraseña
-#from .apps.views. import PasswordResetRequestView, PasswordResetConfirmView
+<<<<<<< HEAD
+from .apps.views. import PasswordResetRequestView, PasswordResetConfirmView
+=======
+from apps.autenticacion.views import PasswordResetRequestView, PasswordResetConfirmView
+>>>>>>> a08a875a9e10eb1a77241b54aec9bd54f83778a1
 
 #Importaciones JWT
 from rest_framework_simplejwt.views import (
@@ -80,8 +84,8 @@ from apps.Users.routers.UsuarioRouter import UsuarioRouter
 
 urlpatterns = [
     #Recuperacion de contraseña
-    #path("reset-password/", PasswordResetRequestView.as_view(), name="password_reset_request"),
-    #path("reset-password/<uidb64>/<token>/", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    path("reset-password/", PasswordResetRequestView.as_view(), name="password_reset_request"),
+    path("reset-password/<uidb64>/<token>/", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 
     path('admin/', admin.site.urls),
     #URLs de JWT
