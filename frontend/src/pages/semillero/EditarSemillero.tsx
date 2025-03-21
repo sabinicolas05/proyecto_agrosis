@@ -4,6 +4,7 @@ import { useUpdateSemillero } from "@/hooks/trazabilidad/semillero/useUpdateSemi
 import useAuth from "@/hooks/useAuth";
 import { Button, Input } from "@heroui/react";
 import { toast } from "react-toastify";
+import useFetchSemilleroOptions from "@/hooks/trazabilidad/semillero/Map.semillero"; // Importa el hook adecuado
 
 const EditarSemilleroModal = ({ id, onClose }) => {
   useAuth();
@@ -12,11 +13,16 @@ const EditarSemilleroModal = ({ id, onClose }) => {
   const { data: semillero, isLoading } = useFetchSemilleroById(id);
   const { mutate: updateSemillero, isLoading: isUpdating } = useUpdateSemillero();
 
+  // Obtener opciones para los selects (especies, lotes, etc.)
+  const { especies, lotes } = useFetchSemilleroOptions(); 
+
   const [formData, setFormData] = useState({
     nombre_semilla: "",
     fecha_siembra: "",
     fecha_estimada: "",
     unidades: "",
+    fk_especie: "",
+    fk_lote: "",
   });
 
   useEffect(() => {
@@ -26,6 +32,8 @@ const EditarSemilleroModal = ({ id, onClose }) => {
         fecha_siembra: semillero.fecha_siembra ?? "",
         fecha_estimada: semillero.fecha_estimada ?? "",
         unidades: semillero.unidades ?? "",
+        fk_especie: semillero.fk_especie?.id ?? "", // Asume que tienes el ID de la especie
+        fk_lote: semillero.fk_lote?.id ?? "", // Asume que tienes el ID del lote
       });
     }
   }, [semillero, isLoading]);
@@ -75,6 +83,40 @@ const EditarSemilleroModal = ({ id, onClose }) => {
 
             <label>Unidades *</label>
             <Input type="number" name="unidades" value={formData.unidades} onChange={handleChange} required />
+            <br />
+            {/* Select de Especie */}
+            <label>Especie *</label>
+            <br />
+            <select
+              name="fk_especie"
+              value={formData.fk_especie}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Seleccionar especie</option>
+              {especies?.map((especie) => (
+                <option key={especie.id} value={especie.id}>
+                  {especie.nombre}
+                </option>
+              ))}
+            </select>
+                <br />
+            {/* Select de Lote */}
+            <label>Lote *</label>
+            <br />
+            <select
+              name="fk_lote"
+              value={formData.fk_lote}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Seleccionar lote</option>
+              {lotes?.map((lote) => (
+                <option key={lote.id} value={lote.id}>
+                  {lote.nombre}
+                </option>
+              ))}
+            </select>
 
             <div className="flex justify-end gap-2 mt-4">
               <Button type="button" className="bg-gray-400 text-white px-4 py-2 rounded" onClick={onClose}>
