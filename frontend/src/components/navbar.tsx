@@ -23,7 +23,6 @@ import { GiProcessor } from "react-icons/gi";
 
 const menuItems = [
   { id: 1, label: "Inicio", path: "/inicio", icon: <FaHome /> },
-  { id: 2, label: "Semillero", path: "/semilleros", icon: <FaCalendarAlt /> },
   {
     id: 3,
     label: "IoT",
@@ -45,33 +44,37 @@ const menuItems = [
       { id: 11, label: "Bancal", path: "/cultivo/bancal", icon: <FaTree /> },
       { id: 12, label: "Lotes", path: "/cultivo/lotes", icon: <FaTree /> },
       { id: 13, label: "Actividades", path: "/cultivo/actividades", icon: <FaTree /> },
+      { id: 14, label: "Semillas", path: "/semillas", icon: <FaCalendarAlt /> },
+      { id: 15, label: "Semillero", path: "/semilleros", icon: <FaCalendarAlt /> },
+      
+
     ],
   },
-  { id: 14, label: "Usuarios", path: "/usuarios", icon: <FaUser /> },
-  { id: 15, label: "Mapa", path: "/mapa", icon: <FaMapMarkerAlt /> },
+  { id: 16, label: "Usuarios", path: "/usuarios", icon: <FaUser /> },
+  { id: 17, label: "Mapa", path: "/mapa", icon: <FaMapMarkerAlt /> },
   { 
-    id: 16,
+    id: 18,
     label: "Finanzas",
     icon: <FaDollarSign />,
     subItems: [
-      { id: 17, label: "Pagos", path: "/finanzas/pagos", icon: <FaSeedling /> },
-      { id: 18, label: "Produccion", path: "/finanzas/produccion", icon: <FaTachometerAlt /> },
-      { id: 19, label: "Residuos", path: "/finanzas/residuos", icon: <FaTree /> },
-      { id: 20, label: "Venta", path: "/finanzas/venta", icon: <FaTree /> },
+      { id: 19, label: "Pagos", path: "/finanzas/pagos", icon: <FaSeedling /> },
+      { id: 20, label: "Produccion", path: "/finanzas/produccion", icon: <FaTachometerAlt /> },
+      { id: 21, label: "Residuos", path: "/finanzas/residuos", icon: <FaTree /> },
+      { id: 22, label: "Venta", path: "/finanzas/venta", icon: <FaTree /> },
       
     ],
   },
-  { id: 21, label: "Plagas", path: "/plagas", icon: <FaBug /> },
+  { id: 22, label: "Plagas", path: "/plagas", icon: <FaBug /> },
   { 
-    id: 22,
+    id: 23,
     label: "Inventario",
     icon: <FaBox />,
     subItems: [
-      { id: 23, label: "Tipo Herramienta", path: "/inventario/tipo_herramienta", icon: <FaSeedling /> },
-      { id: 24, label: "Herramienta", path: "/inventario/herramientas", icon: <FaTachometerAlt /> },
-      { id: 25, label: "Tipo Insumo", path: "/inventario/tipo_insumo", icon: <FaTree /> },
-      { id: 26, label: "Insumo", path: "/inventario/insumo", icon: <FaTree /> },
-      { id: 27, label: "Inventario", path: "/inventario/inventario", icon: <FaTree /> },
+      { id: 24, label: "Tipo Herramienta", path: "/inventario/tipo_herramienta", icon: <FaSeedling /> },
+      { id: 25, label: "Herramienta", path: "/inventario/herramientas", icon: <FaTachometerAlt /> },
+      { id: 26, label: "Tipo Insumo", path: "/inventario/tipo_insumo", icon: <FaTree /> },
+      { id: 27, label: "Insumo", path: "/inventario/insumo", icon: <FaTree /> },
+      { id: 28, label: "Inventario", path: "/inventario/inventario", icon: <FaTree /> },
       
     ],
    },
