@@ -2,15 +2,15 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 interface Semillero {
-  fk_especie: number;
-  fk_lote: number;
+  fk_especie: number | null;
+  fk_lote: number | null;
   nombre_semilla: string;
   fecha_siembra: string;
   fecha_estimada: string;
   unidades: number;
 }
 
-const postSemillero = async (nuevoSemillero: Semillero) => {
+const createSemillero = async (nuevoSemillero: Semillero) => {
   const token = localStorage.getItem("token");
 
   const response = await fetch("http://127.0.0.1:8000/api/semillero/", {
@@ -29,11 +29,11 @@ const postSemillero = async (nuevoSemillero: Semillero) => {
   return response.json();
 };
 
-export const usePostSemillero = () => {
+export const useCreateSemillero = () => {
   return useMutation({
-    mutationFn: postSemillero,
-    onSuccess: (data) => {
-      toast.success(`✅ Semillero "${data.nombre_semilla}" registrado`);
+    mutationFn: createSemillero,
+    onSuccess: () => {
+      toast.success("✅ Semillero registrado exitosamente");
     },
     onError: () => {
       toast.error("❌ Error al registrar el semillero");
