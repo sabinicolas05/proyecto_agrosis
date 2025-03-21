@@ -29,6 +29,7 @@ import HerramientasList from "./pages/inventario/herramientas/HerramientaGet";
 import TipoHerramientasList from "./pages/inventario/tipo_herramientas/TipoHerramientaGet";
 import TipoInsumosList from "./pages/inventario/tipo_insumo/TipoInsumoGet";
 import InsumosList from "./pages/inventario/insumo/InsumoGet";
+import InventarioList from "./pages/inventario/inventarios/InventarioGet";
 {/*  FINANZAS */}
 import PagoList from "./pages/finanzas/pago/PagoGet";
 import ProduccionList from "./pages/finanzas/produccion/ProduccionGet";
@@ -78,6 +79,7 @@ function App() {
           
           {/* 🔹 INVENTARIO */}
           <Route element={<HerramientasList/>} path="/inventario/herramientas" />
+          <Route element={<InventarioList/>} path="/inventario/inventario" />
           <Route element={<TipoHerramientasList/>} path="/inventario/tipo_herramienta" />
           <Route element={<TipoInsumosList/>} path="/inventario/tipo_insumo" />
           <Route element={<InsumosList/>} path="/inventario/insumo" />
@@ -100,6 +102,7 @@ function App() {
     </>
   );
 }
+
 
 export default App;
 

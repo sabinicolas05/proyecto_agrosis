@@ -22,7 +22,7 @@ export const useFetchEspecie = () => {
   return useQuery({
     queryKey: ["especies"],
     queryFn: fetchEspecie,
-    staleTime: 5000, // Los datos se consideran "frescos" solo por 5 segundos
-    refetchInterval: 5000, // Hace el fetch cada 5 segundos automáticamente
+    staleTime: 5000, 
+    refetchInterval: 5000, 
   });
 };
