@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 #Recuperacion de contraseña
 
+#from apps.autenticacion.views import PasswordResetRequestView, PasswordResetConfirmView
+
+
 #Importaciones JWT
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,

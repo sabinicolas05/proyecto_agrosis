@@ -28,5 +28,8 @@ export const useFetchVentas = () => {
   return useQuery({
     queryKey: ["ventas"],
     queryFn: fetchVentas,
+    staleTime: 5000, 
+    refetchInterval: 5000, 
+
   });
 };

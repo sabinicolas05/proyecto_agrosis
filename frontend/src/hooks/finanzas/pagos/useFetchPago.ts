@@ -22,5 +22,7 @@ export const useFetchPago = () => {
   return useQuery({
     queryKey: ["pagos"],
     queryFn: fetchPago,
+    staleTime: 5000, 
+    refetchInterval: 5000, 
   });
 };

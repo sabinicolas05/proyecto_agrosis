@@ -54,6 +54,7 @@ const RegisterSensorModal = ({ onClose }) => {
         <h2 className="text-lg font-bold mb-4">Registrar Sensor</h2>
         <form onSubmit={handleSubmit}>
           <label>Tipo de Sensor *</label>
+          <br />
           <select name="fk_tipo_sensor" value={formData.fk_tipo_sensor} onChange={handleChange} required>
             <option value="">Seleccione un tipo de sensor</option>
             {tipoSensores.map((tipo) => (
@@ -62,8 +63,10 @@ const RegisterSensorModal = ({ onClose }) => {
               </option>
             ))}
           </select>
-
+            <br />
+            <br />
           <label>Bancal *</label>
+          <br />
           <select name="fk_bancal" value={formData.fk_bancal} onChange={handleChange} required>
             <option value="">Seleccione un bancal</option>
             {bancales.map((bancal) => (
@@ -72,8 +75,10 @@ const RegisterSensorModal = ({ onClose }) => {
               </option>
             ))}
           </select>
-
+            <br />
+            <br />
           <label>Configuración</label>
+          <br />
 <select name="fk_configuracion" value={formData.fk_configuracion} onChange={handleChange}>
   <option value="">Seleccione una configuración</option>
   {configuraciones.map((config) => (
@@ -82,8 +87,10 @@ const RegisterSensorModal = ({ onClose }) => {
     </option>
   ))}
 </select>
-
+      <br />
+      <br />
           <label>Cultivo</label>
+          <br />
           <select name="fk_cultivo" value={formData.fk_cultivo} onChange={handleChange}>
             <option value="">Seleccione un cultivo</option>
             {cultivos.map((cultivo) => (
@@ -92,10 +99,13 @@ const RegisterSensorModal = ({ onClose }) => {
               </option>
             ))}
           </select>
-
+            <br />
+            <br />
           <label>Medición *</label>
+          <br />
+          <br />
           <Input type="number" step="0.01" name="medicion" value={formData.medicion} onChange={handleChange} required />
-
+            <br />
           <div className="flex justify-end gap-2 mt-4">
             <Button type="button" className="bg-gray-400 text-white px-4 py-2 rounded" onClick={onClose}>
               Cancelar

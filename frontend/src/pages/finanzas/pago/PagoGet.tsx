@@ -20,12 +20,12 @@ const PagosList = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [pagoAEliminar, setPagoAEliminar] = useState<string | null>(null);
 
-  if (error) return <p className="text-red-500">❌ Error al cargar los pagos.</p>;
+  if (error) return <p className="text-red-500"> Error al cargar los pagos.</p>;
 
   return (
     <DefaultLayout>
       <div className="overflow-x-auto">
-        <h2 className="text-lg font-bold mb-4">💵 Pagos Registrados</h2>
+        <h2 className="text-lg font-bold mb-4"> Pagos Registrados</h2>
 
         {isLoading ? (
           <p className="text-gray-500">Cargando pagos...</p>
@@ -52,13 +52,13 @@ const PagosList = () => {
                       onClick={() => setPagoSeleccionado(pago.id)}
                       className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
                     >
-                      ✏️ Editar
+                       Editar
                     </Button>
                     <Button
                       onClick={() => setPagoAEliminar(pago.id)}
                       className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
                     >
-                      🗑️ Eliminar
+                       Eliminar
                     </Button>
                   </td>
                 </tr>
@@ -75,7 +75,7 @@ const PagosList = () => {
         onClick={() => setMostrarModal(true)}
         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
       >
-        ➕ Registrar un pago
+         Registrar un pago
       </Button>
 
       {/* Modal de registro */}
@@ -94,7 +94,7 @@ const PagosList = () => {
             <p className="mb-4">Esta acción no se puede deshacer.</p>
             <div className="flex justify-end gap-2">
               <Button className="bg-gray-400 text-white px-4 py-2 rounded" onClick={() => setPagoAEliminar(null)}>
-                ❌ Cancelar
+                 Cancelar
               </Button>
               <Button
                 className="bg-red-500 text-white px-4 py-2 rounded"
@@ -106,7 +106,7 @@ const PagosList = () => {
                   setPagoAEliminar(null);
                 }}
               >
-                ✅ Eliminar
+                 Eliminar
               </Button>
             </div>
           </div>

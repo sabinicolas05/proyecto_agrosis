@@ -11,10 +11,10 @@ const EditarHerramientaModal = ({ id, onClose }) => {
   const { mutate: updateHerramienta, isLoading: isUpdating } = useUpdateHerramienta();
 
   const [formData, setFormData] = useState({
-    nombre:"",
+    nombre: "",
     unidades: "",
     precioCU: "",
-    estado: "",
+    estado: false,
   });
 
   useEffect(() => {
@@ -23,20 +23,22 @@ const EditarHerramientaModal = ({ id, onClose }) => {
         nombre: herramienta.nombre ?? "",
         unidades: herramienta.unidades ?? "",
         precioCU: herramienta.precioCU ?? "",
-        estado: herramienta.estado ?? "",
+        estado: herramienta.estado ?? false,
       });
-          
-      }
-
-    }, [herramienta, isLoading]);
+    }
+  }, [herramienta, isLoading]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;9
-    setFormData((prev) => ({ ...prev, [name]: value}));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
-    if (!formData.nombre || !formData.unidades || !formData.precioCU || !formData.estado) {
+    if (!formData.nombre || !formData.unidades || !formData.precioCU) {
       toast.error("Todos los campos son obligatorios.");
       return;
     }
@@ -65,15 +67,21 @@ const EditarHerramientaModal = ({ id, onClose }) => {
             <label>Nombre *</label>
             <Input type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
 
-            <label> unidades *</label>
+            <label>Unidades *</label>
             <Input type="number" name="unidades" value={formData.unidades} onChange={handleChange} required />
 
-            <label>precioCU *</label>
+            <label>Precio CU *</label>
             <Input type="number" name="precioCU" value={formData.precioCU} onChange={handleChange} required />
 
-            <label>estado *</label>
-            <Input type="text" name="estado" value={formData.estado} onChange={handleChange} required />
-
+            <label>Estado *</label>
+            <input
+              type="checkbox"
+              name="estado"
+              checked={formData.estado}
+              onChange={handleChange}
+              className="h-4 w-4"
+            />
+            <span className="ml-2">Activo</span>
 
             <div className="flex justify-end gap-2 mt-4">
               <Button type="button" className="bg-gray-400 text-white px-4 py-2 rounded" onClick={onClose}>
@@ -89,6 +97,5 @@ const EditarHerramientaModal = ({ id, onClose }) => {
     </div>
   );
 };
-
 
 export default EditarHerramientaModal;

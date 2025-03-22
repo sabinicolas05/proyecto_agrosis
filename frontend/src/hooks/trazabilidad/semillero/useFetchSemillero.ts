@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-const fetchHerramienta = async () => {
+const fetchSemilleros = async () => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch("http://127.0.0.1:8000/api/herramienta/", {
+  const response = await fetch("http://127.0.0.1:8000/api/semillero/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -12,16 +12,15 @@ const fetchHerramienta = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Error al obtener herramientas");
+    throw new Error("Error al obtener los semilleros"); 
   }
 
   return response.json();
 };
 
-export const useFetchHerramienta = () => {
+export const useFetchSemilleros = () => {
   return useQuery({
-    queryKey: ["herramientas"],
-    queryFn: fetchHerramienta,
-    refetchInterval: 5000, 
+    queryKey: ["semilleros"],
+    queryFn: fetchSemilleros,
   });
 };

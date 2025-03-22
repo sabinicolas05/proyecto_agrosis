@@ -6,13 +6,15 @@ import IndexPage from "@/pages/index";
 import PricingPage from "@/pages/pricing";
 import BlogPage from "@/pages/blog";
 import AboutPage from "@/pages/about";
+
+{/*  TRAZABILIDAD */}
 import SensorConfigForm from "@/pages/sensor/configuracion/ConfigsensorGet";
 import LoginForm from "@/pages/login";
 import RegisterForm from "./pages/register";
 import TipoEspecieForm   from "./pages/tipo_especie/tipo_especie_Get";
 import EspecieForm from "./pages/especie/EspecieGet";
 import LoteForm from "./pages/lote/LoteGet";
-import SemilleroForm from "./pages/semillero/SemilleroForm";
+import SemilleroForm from "./pages/semillero/SemilleroGet";
 import CultivoForm from "./pages/trazabilidad/cultivo/CultivoGet";
 import ActividadForm from "./pages/actividad/ActividadForm";
 import SensorForm from "./pages/sensor/SensorGet";
@@ -21,13 +23,14 @@ import UsuariosList from "./pages/user/UsersGet";
 import EditarUsuarioModal from "./pages/user/EditarUsuario";
 import RegisterUserModal from "./pages/user/registerModalUsers";
 import BancalesList from "./pages/bancal/BancalGet";
-{/* 🔹 INVENTARIO */}
+import SemillerosList from "./pages/semillero/SemilleroGet";
+{/*  INVENTARIO */}
 import HerramientasList from "./pages/inventario/herramientas/HerramientaGet";
 import TipoHerramientasList from "./pages/inventario/tipo_herramientas/TipoHerramientaGet";
 import TipoInsumosList from "./pages/inventario/tipo_insumo/TipoInsumoGet";
 import InsumosList from "./pages/inventario/insumo/InsumoGet";
-
-{/* 🔹 FINANZAS */}
+import InventarioList from "./pages/inventario/inventarios/InventarioGet";
+{/*  FINANZAS */}
 import PagoList from "./pages/finanzas/pago/PagoGet";
 import ProduccionList from "./pages/finanzas/produccion/ProduccionGet";
 import ResiduosList from "./pages/finanzas/residuo/ResiduoGet";
@@ -71,8 +74,12 @@ function App() {
           <Route element={<CultivoForm />} path="/cultivo/cultivo" />
           <Route element={<BancalesList />} path="/cultivo/bancal" />
           <Route element={<ActividadForm />} path="/cultivo/actividades" />
+          <Route element={<SemillerosList />} path="/cultivo/actividades" />
+
+          
           {/* 🔹 INVENTARIO */}
           <Route element={<HerramientasList/>} path="/inventario/herramientas" />
+          <Route element={<InventarioList/>} path="/inventario/inventario" />
           <Route element={<TipoHerramientasList/>} path="/inventario/tipo_herramienta" />
           <Route element={<TipoInsumosList/>} path="/inventario/tipo_insumo" />
           <Route element={<InsumosList/>} path="/inventario/insumo" />
@@ -95,6 +102,7 @@ function App() {
     </>
   );
 }
+
 
 export default App;
 
