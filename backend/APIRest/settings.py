@@ -32,6 +32,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "channels",
+    'corsheaders',
+    'daphne',
+    'django_extensions',
+    "apps.Trazabilidad",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes", 
@@ -42,16 +47,14 @@ INSTALLED_APPS = [
     "apps.Finanzas",
     "apps.Inventario",
     "apps.IoT",
-    "apps.Trazabilidad",
     "apps.Users",
     "rest_framework",
     "rest_framework_simplejwt",
-    "channels",
 ]
 
-
-
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +63,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+#permiso para el react
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+   
+]
+
 
 ROOT_URLCONF = 'APIRest.urls'
 
@@ -88,9 +98,9 @@ WSGI_APPLICATION = 'APIRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DjangoRest',
+        'NAME': 'agrosis_proyecto',
         'USER': 'postgres',
-        'PASSWORD': 'adso2024',
+        'PASSWORD': 'hate',
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -131,8 +141,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = './static'
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -142,46 +158,35 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+
     )
 }
 
 
 SIMPLE_JWT = {
-   'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
+   'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=720),
    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=7), 
 }
 
 AUTH_USER_MODEL = 'Users.Usuario'
 
 
-
-
-# Configurar Django Channels
-ASGI_APPLICATION = "APIRest.asgi.application"  
+ASGI_APPLICATION = "APIRest.asgi.application"
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        "BACKEND": "channels.layers.InMemoryChannelLayer",  
     },
 }
 
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("127.0.0.1", 6379)],
+#         },
+#     },
+# }
 
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}

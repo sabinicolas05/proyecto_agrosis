@@ -1,5 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
-from ..models.Configuracion import Configuracion
+from ..models.Configuracion_model import Configuracion
 from ..serializers.ConfiguracionSerializer import ConfiguracionSerializer
 from rest_framework.permissions import IsAuthenticated
 

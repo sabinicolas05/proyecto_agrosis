@@ -1,4 +1,4 @@
-from ..models.Sensor import Sensor
+from ..models.Sensor_model import Sensor
 from rest_framework.serializers import ModelSerializer
 
 class SensorSerializer(ModelSerializer):

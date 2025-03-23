@@ -9,4 +9,4 @@ class Bancal(models.Model):
     fk_cultivo = models.ForeignKey(Cultivo,on_delete=models.SET_NULL,null=True)
     ubicacion = models.CharField(max_length=50)
     def __str__(self):
-        return self.nombre
+        return self.ubicacion
